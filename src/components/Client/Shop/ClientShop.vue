@@ -35,7 +35,7 @@
 
         <main class="col-lg-10 ps-lg-4">
           <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2">
-            <h5 class="text-uppercase fw-light m-0">Áo dài</h5>
+            <h5 class="text-uppercase fw-bold fw-light m-0">Áo dài</h5>
             <div class="d-flex gap-4 small text-muted text-uppercase">
               <span class="cursor-pointer">Kích cỡ <i class="bi bi-chevron-down"></i></span>
               <span class="cursor-pointer">Màu sắc <i class="bi bi-chevron-down"></i></span>
@@ -55,9 +55,9 @@
                     </div>
                   </router-link>
                 </div>
-                <div class="product-info mt-3 text-center">
-                  <p class="product-name small mb-1">{{ product.name }}</p>
-                  <p class="product-price fw-bold small">{{ product.price }}</p>
+                <div class="product-info mt-2 text-center">
+                  <p class="product-name">{{ product.name }}</p>
+                  <p class="product-price">{{ product.price }}</p>
                 </div>
               </div>
             </div>
@@ -138,15 +138,16 @@ onMounted(() => {
 .product-overlay {
   position: absolute;
   top: 0; left: 0; width: 100%; height: 100%;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.4);
   display: flex; justify-content: center; align-items: center;
   z-index: 3; transform: translateX(-101%);
   transition: transform 0.4s ease;
 }
 .product-card:hover .product-overlay { transform: translateX(0); }
+
 .product-name {
-  font-size: 11px;
-  letter-spacing: 1px;
+  font-size: 15px;
+  letter-spacing: 1px; /* Tăng khoảng cách chữ giống Format */
   color: #333;
 }
 .product-price {

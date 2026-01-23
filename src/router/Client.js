@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import ClientLayout from '../layouts/ClientLayout.vue'
 import HomeView from '../views/HomeView.vue'
 import Shop from '../components/Client/Shop/ClientShop.vue'
+import ViewProduct from '../components/Client/Shop/ViewProduct.vue'
 
 const routes = [
   {
@@ -17,6 +18,13 @@ const routes = [
         path: 'shop',
         name: 'Shop',
         component: Shop
+      },
+
+      // route cho chi tiết sản phẩm
+      {
+        path: 'product/:id', // ":id" là tham số động để lấy đúng SP từ db.json
+        name: 'ViewProduct',
+        component: ViewProduct
       }
     ]
   }

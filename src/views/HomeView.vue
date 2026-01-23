@@ -2,8 +2,7 @@
   <div>
     <Slider />
     <PromoBanners />
-    <ProductCarousel sectionTitle="NEM ZEN" />
-    <ProductCarousel sectionTitle="PAHU" />
+    <ProductCarousel/>
   </div>
 </template>
 

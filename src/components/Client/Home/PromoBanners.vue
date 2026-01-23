@@ -3,7 +3,7 @@
     <div class="container-fluid px-1">
       <div class="row g-2">
         <div class="col-md-6">
-          <div class="promo-item position-relative overflow-hidden">
+          <router-link to="/shop" class="promo-item position-relative overflow-hidden">
             <a href="#" class="text-decoration-none">
               <img
                 src="https://theme.hstatic.net/200000182297/1000887316/14/home_new_banner_1_2048x2048.jpg?v=3027"
@@ -17,10 +17,10 @@
                 <span class="small text-muted">SHOP NOW</span>
               </div>
             </a>
-          </div>
+          </router-link>
         </div>
         <div class="col-md-6">
-          <div class="promo-item position-relative overflow-hidden">
+          <router-link to="/shop" class="promo-item position-relative overflow-hidden">
             <a href="#" class="text-decoration-none">
               <img
                 src="https://theme.hstatic.net/200000182297/1000887316/14/home_new_banner_2_2048x2048.jpg?v=3027"
@@ -34,7 +34,7 @@
                 <span class="small text-muted">SHOP NOW</span>
               </div>
             </a>
-          </div>
+          </router-link>
         </div>
       </div>
     </div>

@@ -1,0 +1,174 @@
+<template>
+  <div class="product-detail-page py-5" v-if="product">
+    <div class="container px-md-5">
+      <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb small text-uppercase fw-semibold tracking-widest border-0 bg-transparent p-0">
+          <li class="breadcrumb-item">
+            <router-link to="/" class="text-dark text-decoration-none">TRANG CHỦ</router-link>
+          </li>
+          <li class="breadcrumb-item">
+            <router-link to="/shop" class="text-dark text-decoration-none">ÁO DÀI</router-link>
+          </li>
+          <li class="breadcrumb-item active text-dark" aria-current="page">
+             {{ product.name }}
+          </li>
+        </ol>
+      </nav>
+
+      <div class="row g-5 align-items-start">
+        <div class="col-lg-7">
+          <div class="row g-2">
+            <div class="col-2 d-none d-md-block">
+              <div class="thumb-list d-flex flex-column gap-2">
+                <img
+                  :src="product.imgMain"
+                  class="img-thumbnail border-0 p-0"
+                  :class="{ 'active-thumb': activeImage === product.imgMain }"
+                  @click="activeImage = product.imgMain"
+                  alt="thumb 1"
+                />
+                <img
+                  :src="product.imgHover"
+                  class="img-thumbnail border-0 p-0"
+                  :class="{ 'active-thumb': activeImage === product.imgHover }"
+                  @click="activeImage = product.imgHover"
+                  alt="thumb 2"
+                />
+              </div>
+            </div>
+
+            <div class="col-10">
+              <div class="main-image-wrapper bg-light">
+                <img :src="activeImage" class="img-fluid w-100 main-view-img" :alt="product.name" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="product-info-sticky">
+            <h1 class="h4 fw-bold text-uppercase mb-2 tracking-tighter">{{ product.name }}</h1>
+            <p class="text-muted small mb-3">Mã SP: {{ product.id }}</p>
+
+            <h3 class="fw-bold mb-4">{{ product.price }}</h3>
+
+            <div class="mb-4">
+              <div class="d-flex justify-content-between mb-2">
+                <span class="small fw-bold">KÍCH THƯỚC</span>
+                <a href="#" class="small text-dark text-decoration-underline">HƯỚNG DẪN CHỌN SIZE</a>
+              </div>
+              <div class="d-flex gap-2">
+                <button v-for="size in ['Size 4', 'Size 6', 'Size 8', 'Size 10']"
+                        :key="size"
+                        class="btn btn-outline-dark btn-sm rounded-0 px-3 py-2">
+                  {{ size }}
+                </button>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <span class="small fw-bold d-block mb-2">MÀU SẮC</span>
+              <div class="color-dot rounded-circle border p-1 d-inline-block"
+                   :style="{ backgroundColor: product.color === 'Đỏ' ? '#8B0000' : '#FFC0CB', width: '30px', height: '30px' }">
+              </div>
+            </div>
+
+            <div class="d-flex flex-column gap-2 mb-5">
+              <div class="quantity-input border d-inline-flex align-items-center justify-content-between px-3 py-2 mb-2" style="width: 120px;">
+                <span class="cursor-pointer" @click="quantity > 1 ? quantity-- : null">-</span>
+                <span>{{ quantity }}</span>
+                <span class="cursor-pointer" @click="quantity++">+</span>
+              </div>
+
+              <button class="btn btn-outline-dark rounded-0 py-3 fw-bold text-uppercase">Thêm vào giỏ</button>
+              <button class="btn btn-dark rounded-0 py-3 fw-bold text-uppercase">Mua ngay</button>
+            </div>
+
+            <div class="product-description small text-muted">
+              <p><strong>Chất liệu:</strong> vải gấm</p>
+              <p><strong>Kiểu dáng:</strong> áo dài thiết kế dáng chiết eo giúp tôn dáng tối đa, sử dụng phần cổ truyền thống mang tới sự thanh lịch cho người mặc.</p>
+              <p><strong>Sản phẩm thuộc dòng:</strong> NEM NEW</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
+import axios from 'axios';
+
+const route = useRoute();
+const product = ref(null);
+const activeImage = ref(''); // Lưu trữ ảnh đang hiển thị to
+const quantity = ref(1);    // Số lượng sản phẩm
+
+const fetchProductDetail = async () => {
+  try {
+    const id = route.params.id;
+    const response = await axios.get(`http://localhost:3000/products/${id}`);
+    product.value = response.data;
+    activeImage.value = response.data.imgMain; // Mặc định hiển thị ảnh chính
+  } catch (error) {
+    console.error("Lỗi khi tải chi tiết sản phẩm:", error);
+  }
+};
+
+onMounted(() => {
+  fetchProductDetail();
+});
+</script>
+
+<style scoped>
+.breadcrumb { font-size: 11px; letter-spacing: 2px; }
+
+.img-thumbnail {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+  border-radius: 8px !important;
+  opacity: 0.7; /* Mặc định hơi mờ nhẹ */
+}
+
+/* Khi di chuột vào: Hiện rõ và ZOOM nhẹ */
+.img-thumbnail:hover {
+  opacity: 1 !important;
+  transform: scale(1.05); /* Chỉ zoom khi hover */
+  z-index: 1;
+}
+
+/* Khi đã được chọn (Active): Hiện rõ nhưng KÍCH THƯỚC BÌNH THƯỜNG */
+.active-thumb {
+  opacity: 1 !important;
+  border: 1px solid #000 !important;
+  transform: scale(1); /* Trở về kích thước 1:1 bình thường */
+}
+
+/* Ảnh chính giữ nguyên */
+.main-view-img {
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 4px;
+}
+
+.product-info-sticky {
+  position: relative;
+
+  /* Di chuyển theo màn hình
+  position: sticky;
+  top: 100px; Khoảng cách từ đỉnh trình duyệt khi cuộn xuống */
+  /* Đảm bảo nội dung không vượt quá chiều cao màn hình nếu quá dài */
+  /* max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  padding-right: 15px; */
+}
+.quantity-input span { user-select: none; }
+.cursor-pointer { cursor: pointer; font-weight: bold; }
+.btn:hover { opacity: 0.9; }
+.color-dot { cursor: pointer; }
+.tracking-tighter { letter-spacing: -0.5px; }
+</style>

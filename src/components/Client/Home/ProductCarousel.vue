@@ -1,234 +1,110 @@
 <template>
   <section class="product-carousel-section my-5">
+    <div class="container position-relative mb-5">
+      <div class="text-center mb-5">
+        <h2 class="fw-light tracking-widest text-uppercase" style="font-size: 2rem">Tone Hồng Ngọt Ngào</h2>
+      </div>
+
+      <div class="nem-slick-slider" v-if="pinkProducts.length > 0">
+        <div v-for="product in pinkProducts" :key="product.id" class="product-item">
+          <div class="product-card">
+            <div class="product-img-container">
+              <router-link :to="`/product/${product.id}`">
+                <img :src="product.imgMain" class="img-main" :alt="product.name" />
+                <img :src="product.imgHover" class="img-hover" :alt="product.name + ' Hover'" />
+                <div class="product-overlay">
+                  <span class="btn-xem-them">XEM THÊM</span>
+                </div>
+              </router-link>
+            </div>
+            <div class="product-info">
+              <p class="product-name fs-7">{{ product.name }}</p>
+              <p class="product-price">{{ product.price }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="custom-nav-btn slick-prev-btn"><i class="bi bi-chevron-left"></i></button>
+      <button class="custom-nav-btn slick-next-btn"><i class="bi bi-chevron-right"></i></button>
+    </div>
+
     <div class="container position-relative">
       <div class="text-center mb-5">
-        <h2 class="fw-light tracking-widest text-uppercase" style="font-size: 2.5rem">DevS</h2>
+        <h2 class="fw-light tracking-widest text-uppercase" style="font-size: 2rem">Tone Đỏ Quyến Rũ</h2>
       </div>
 
-      <div class="nem-slick-slider">
-        <div class="product-item">
+      <div class="nem-slick-slider" v-if="redProducts.length > 0">
+        <div v-for="product in redProducts" :key="product.id" class="product-item">
           <div class="product-card">
             <div class="product-img-container">
-              <a href="#">
-                <img
-                  src="//cdn.hstatic.net/products/200000182297/2.1_e2db3768d929465b864262247b086d30_1024x1024.jpg"
-                  class="img-main"
-                  alt="P1"
-                />
-                <img
-                  src="//cdn.hstatic.net/products/200000182297/2.5_9bf7920879f04ed5bb9d58ad127cea16_1024x1024.jpg"
-                  class="img-hover"
-                  alt="P1 Hover"
-                />
+              <router-link :to="`/product/${product.id}`">
+                <img :src="product.imgMain" class="img-main" :alt="product.name" />
+                <img :src="product.imgHover" class="img-hover" :alt="product.name + ' Hover'" />
                 <div class="product-overlay">
                   <span class="btn-xem-them">XEM THÊM</span>
                 </div>
-              </a>
+              </router-link>
             </div>
-            <div class="product-info">
-              <p class="product-name">2 SET BỘ XÁM PHỐI VIỀN TRẮNG HW40482</p>
-              <p class="product-price">1,399,000đ</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-item">
-          <div class="product-card">
-            <div class="product-img-container">
-              <a href="#">
-                <img
-                  src="//cdn.hstatic.net/products/200000182297/1.2_6e9caae902c04629b0d236f00e70eeea_1024x1024.jpg"
-                  class="img-main"
-                  alt="P2"
-                />
-                <img
-                  src="//cdn.hstatic.net/products/200000182297/1.3_6049723508234bb5a112dd8f4eb4d765_1024x1024.jpg"
-                  class="img-hover"
-                  alt="P2 Hover"
-                />
-                <div class="product-overlay">
-                  <span class="btn-xem-them">XEM THÊM</span>
-                </div>
-              </a>
-            </div>
-            <div class="product-info">
-              <p class="product-name">SET BỘ NHUNG HW69042</p>
-              <p class="product-price">1,599,000đ</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-item">
-          <div class="product-card">
-            <div class="product-img-container">
-              <a href="#">
-                <img
-                  src="//cdn.hstatic.net/products/200000182297/hw690221792554030423p1399dt__1__7a5f0bcf59f147f8abfd1b92b204ff0c_1024x1024.jpg"
-                  class="img-main"
-                  alt="P3"
-                />
-                <img
-                  src="//cdn.hstatic.net/products/200000182297/hw690221792554030423p1399dt__5__bc4d774b97fa4dbd91fde1238cbc9d31_1024x1024.jpg"
-                  class="img-hover"
-                  alt="P3 Hover"
-                />
-                <div class="product-overlay">
-                  <span class="btn-xem-them">XEM THÊM</span>
-                </div>
-              </a>
-            </div>
-            <div class="product-info">
-              <p class="product-name">SET BỘ NỈ TRẮNG HW69022</p>
-              <p class="product-price">1,399,000đ</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-item">
-          <div class="product-card">
-            <div class="product-img-container">
-              <a href="#">
-                <img
-                  src="//cdn.hstatic.net/products/200000182297/hw690221792554030423p1399dt__1__7a5f0bcf59f147f8abfd1b92b204ff0c_1024x1024.jpg"
-                  class="img-main"
-                  alt="P3"
-                />
-                <img
-                  src="//cdn.hstatic.net/products/200000182297/hw690221792554030423p1399dt__5__bc4d774b97fa4dbd91fde1238cbc9d31_1024x1024.jpg"
-                  class="img-hover"
-                  alt="P3 Hover"
-                />
-                <div class="product-overlay">
-                  <span class="btn-xem-them">XEM THÊM</span>
-                </div>
-              </a>
-            </div>
-            <div class="product-info">
-              <p class="product-name">SET BỘ NỈ TRẮNG HW69022</p>
-              <p class="product-price">1,399,000đ</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-item">
-          <div class="product-card">
-            <div class="product-img-container">
-              <a href="#">
-                <img
-                  src="//cdn.hstatic.net/products/200000182297/hw690221792554030423p1399dt__1__7a5f0bcf59f147f8abfd1b92b204ff0c_1024x1024.jpg"
-                  class="img-main"
-                  alt="P3"
-                />
-                <img
-                  src="//cdn.hstatic.net/products/200000182297/hw690221792554030423p1399dt__5__bc4d774b97fa4dbd91fde1238cbc9d31_1024x1024.jpg"
-                  class="img-hover"
-                  alt="P3 Hover"
-                />
-                <div class="product-overlay">
-                  <span class="btn-xem-them">XEM THÊM</span>
-                </div>
-              </a>
-            </div>
-            <div class="product-info">
-              <p class="product-name">SET BỘ NỈ TRẮNG HW69022</p>
-              <p class="product-price">1,399,000đ</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-item">
-          <div class="product-card">
-            <div class="product-img-container">
-              <a href="#">
-                <img
-                  src="//cdn.hstatic.net/products/200000182297/hw690221792554030423p1399dt__1__7a5f0bcf59f147f8abfd1b92b204ff0c_1024x1024.jpg"
-                  class="img-main"
-                  alt="P3"
-                />
-                <img
-                  src="//cdn.hstatic.net/products/200000182297/hw690221792554030423p1399dt__5__bc4d774b97fa4dbd91fde1238cbc9d31_1024x1024.jpg"
-                  class="img-hover"
-                  alt="P3 Hover"
-                />
-                <div class="product-overlay">
-                  <span class="btn-xem-them">XEM THÊM</span>
-                </div>
-              </a>
-            </div>
-            <div class="product-info">
-              <p class="product-name">SET BỘ NỈ TRẮNG HW69022</p>
-              <p class="product-price">1,399,000đ</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="product-item">
-          <div class="product-card">
-            <div class="product-img-container">
-              <a href="#">
-                <img
-                  src="//cdn.hstatic.net/products/200000182297/1.2_b27d16a16d1b4f01b89ad501933c43a0_1024x1024.jpg"
-                  class="img-main"
-                  alt="P4"
-                />
-                <img
-                  src="//cdn.hstatic.net/products/200000182297/1.6_0eb90ae85b894588a6737b2efbd6488c_1024x1024.jpg"
-                  class="img-hover"
-                  alt="P4 Hover"
-                />
-                <div class="product-overlay">
-                  <span class="btn-xem-them">XEM THÊM</span>
-                </div>
-              </a>
-            </div>
-            <div class="product-info">
-              <p class="product-name">CHÂN VÁY XẾP LI Z65102</p>
-              <p class="product-price">799,000đ</p>
+            <div class="product-info mt-2 text-center">
+                <p class="product-name fs-7">{{ product.name }}</p>
+                <p class="product-price">{{ product.price }}</p>
             </div>
           </div>
         </div>
       </div>
 
-      <button class="custom-nav-btn slick-prev-btn">
-        <i class="bi bi-chevron-left"></i>
-      </button>
-      <button class="custom-nav-btn slick-next-btn">
-        <i class="bi bi-chevron-right"></i>
-      </button>
+      <button class="custom-nav-btn slick-prev-btn"><i class="bi bi-chevron-left"></i></button>
+      <button class="custom-nav-btn slick-next-btn"><i class="bi bi-chevron-right"></i></button>
     </div>
   </section>
 </template>
 
 <script setup>
-const props = defineProps(['sectionTitle'])
-import { onMounted, nextTick } from 'vue'
+import { onMounted, nextTick, ref, computed } from 'vue'
+import axios from 'axios'
 import $ from 'jquery'
 import 'slick-carousel'
 import 'slick-carousel/slick/slick.css'
 
+const allProducts = ref([])
+
+// Load dữ liệu từ JSON Server
+const fetchProducts = async () => {
+  try {
+    const response = await axios.get('http://localhost:3000/products')
+    allProducts.value = response.data
+  } catch (error) {
+    console.error("Lỗi kết nối db.json:", error)
+  }
+}
+
+// Logic lọc màu
+const pinkProducts = computed(() => allProducts.value.filter(p => p.color === 'Hồng'))
+const redProducts = computed(() => allProducts.value.filter(p => p.color === 'Đỏ'))
+
 onMounted(async () => {
+  await fetchProducts()
   await nextTick()
 
-  // Fix lỗi $.type nếu vẫn còn
   if (typeof $.type !== 'function') {
     $.type = (obj) => Object.prototype.toString.call(obj).slice(8, -1).toLowerCase()
   }
 
   $('.nem-slick-slider').each(function () {
     const $this = $(this)
-    // Chỉ tìm nút bấm nằm TRONG cùng một container với slider này
     const $container = $this.closest('.container')
     const $prev = $container.find('.slick-prev-btn')
     const $next = $container.find('.slick-next-btn')
 
     $this.slick({
       infinite: true,
-      slidesToShow: 4,
+      slidesToShow: 4, // Hiển thị 4 sản phẩm/hàng
       slidesToScroll: 1,
-      // Kiểm tra nếu có nút thì mới gán, không thì để mặc định của slick
       prevArrow: $prev.length ? $prev : undefined,
       nextArrow: $next.length ? $next : undefined,
       responsive: [
+        { breakpoint: 1200, settings: { slidesToShow: 3 } },
         { breakpoint: 1024, settings: { slidesToShow: 2 } },
         { breakpoint: 768, settings: { slidesToShow: 1 } },
       ],
@@ -255,7 +131,7 @@ onMounted(async () => {
 .product-img-container {
   position: relative;
   width: 321px;
-  height: 475.56px; /* Kích thước chuẩn Nemshop */
+  height: 475.56px; /* Kích thước */
   overflow: hidden; /* Ẩn phần overlay khi chưa trượt vào */
   background-color: #f7f7f7;
 }
@@ -292,7 +168,7 @@ onMounted(async () => {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.4); /* Màu lớp nền mờ */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -329,7 +205,7 @@ onMounted(async () => {
   transform: translateX(0);
 }
 
-/* --- 4. THÔNG TIN VĂN BẢN (TÊN & GIÁ) --- */
+/* --- 4. TÊN & GIÁ --- */
 .product-info {
   width: 100%;
   padding-top: 5px; /* Giúp chữ sát lên chân ảnh */
@@ -337,9 +213,9 @@ onMounted(async () => {
 }
 
 .product-name {
-  font-size: 13px;
+  font-size: 15px;
   color: #333;
-  text-transform: uppercase;
+  text-transform: uppercase; /* In hoa toàn bộ */
   margin-bottom: 2px;
   display: block;
   white-space: nowrap;
@@ -349,7 +225,7 @@ onMounted(async () => {
 
 .product-price {
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 500; /* In đậm */
   color: #000;
   margin: 0;
 }
@@ -386,16 +262,20 @@ onMounted(async () => {
   top: 50%;
   transform: translateY(-50%);
   z-index: 999 !important; /* Luôn nằm trên ảnh */
-  background: #fff !important;
-  color: #000 !important;
-  border: 1px solid #000;
+
+  /* 1. Trạng thái bình thường: Trong suốt mờ đen nhẹ */
+  background: rgba(0, 0, 0, 0.3) !important; /* Độ mờ 30% */
+  color: #ffffff !important;
+  border: none;
+
   width: 40px;
   height: 40px;
-  border-radius: 0; /* Ép thành hình vuông */
+  border-radius: 0; /* hình vuông */
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+
   opacity: 0; /* Mặc định ẩn, hiện khi hover */
   transition: all 0.3s ease;
 }
@@ -405,24 +285,25 @@ onMounted(async () => {
   opacity: 1;
 }
 
+/* 2. Trạng thái khi hover vào chính cái nút: Đen đậm */
 .custom-nav-btn:hover {
-  background: #000 !important;
-  color: #fff !important;
+  background: #000000 !important;
+  color: #ffffff !important;
 }
 
-/* 5. Vị trí nút: Cho nằm đè lên ảnh một chút để an toàn */
+/* 5. Vị trí nút*/
 .slick-prev-btn {
-  left: 15px; /* Nằm đè lên mép trái ảnh đầu tiên */
+  left: 27px; /* Nút trái */
 }
 
 .slick-next-btn {
-  right: 15px; /* Nằm đè lên mép phải ảnh cuối cùng */
+  right: 13px; /* Nút phải */
 }
 
-/* Loại bỏ viền xanh mặc định của Slick */
 .slick-slide,
 .slick-track,
 .slick-list {
-  outline: none !important;
+  margin: 0 1.9px; /* Giữ khoảng cách đều giữa các slide (Dùng để chỉnh lại lề nếu có thừa mép ảnh) */
+  overflow: hidden;
 }
 </style>
