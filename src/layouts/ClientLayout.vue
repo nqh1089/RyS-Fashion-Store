@@ -1,51 +1,22 @@
 <template>
-  <router-view />
-</template>
-
-<script>
-export default {
-  name: 'App'
-}
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <template>
   <div>
     <Navbar />
-    <Slider />
-    <PromoBanners />
-    <ProductCarousel/>
-    <ProductCarousel/>
+
+    <router-view />
+
     <PreFooter />
     <FooterContent />
   </div>
 </template>
 
 <script>
-import Navbar from './components/Client/Home/HomeNavBar.vue'
-import Slider from './components/Client/Home/Slider.vue'
-import PromoBanners from './components/Client/Home/PromoBanners.vue'
-import ProductCarousel from './components/Client/Home/ProductCarousel.vue'
-import PreFooter from './components/Client/Home/PreFooter.vue'
-import FooterContent from './components/Client/Home/FooterContent.vue'
+import Navbar from '../components/Client/Home/HomeNavBar.vue'
+import PreFooter from '../components/Client/Home/PreFooter.vue'
+import FooterContent from '../components/Client/Home/FooterContent.vue'
 
 export default {
   components: {
     Navbar,
-    Slider,
-    PromoBanners,
-    ProductCarousel,
     PreFooter,
     FooterContent,
   },
@@ -95,4 +66,4 @@ body {
     height: 50vh;
   }
 }
-</style> -->
+</style>

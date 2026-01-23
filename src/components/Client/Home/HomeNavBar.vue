@@ -5,10 +5,12 @@
 
   <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
     <div class="container">
-      <a class="navbar-brand fw-bold" href="#home">DevS</a>
+    <router-link to="/" class="navbar-brand fw-bold">DevS</router-link>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mx-auto text-uppercase fw-semibold small">
-          <li class="nav-item"><a class="nav-link px-3" href="#">Sản phẩm mới</a></li>
+          <li class="nav-item">
+            <router-link to="/shop" class="nav-link px-3">Sản phẩm</router-link>
+          </li>
           <li class="nav-item"><a class="nav-link px-3" href="#">Bộ sưu tập</a></li>
           <li class="nav-item"><a class="nav-link px-3" href="#">Áo sơ mi</a></li>
           <li class="nav-item"><a class="nav-link px-3" href="#">Đầm thiết kế</a></li>
