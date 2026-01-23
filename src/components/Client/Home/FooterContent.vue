@@ -3,7 +3,11 @@
     <div class="container text-center">
       <div class="row g-4">
         <div class="col-md-12">
-          <h5 class="text-center mb-4 text-uppercase">DevS FASHION</h5>
+        <img
+          src="@/assets/Home/RyS2.png"
+          alt="RyS Fashion Store"
+          class="main-logo"
+        />
           <p class="text-secondary text-center lh-base">
             Trang web nhằm mục đích phục vụ học tập. <br />
             Huynq_TH05211_ASM_SOF3081
@@ -16,7 +20,7 @@
         </div>
       </div>
       <div class="text-center mt-5 pt-4 border-top border-secondary small text-secondary">
-        © 2026 DevS FASHION
+        © 2026 RyS FASHION
       </div>
     </div>
   </footer>
@@ -39,9 +43,10 @@ footer .container {
   align-items: center;
 }
 
-footer h5 {
-  font-size: 16px;
-  letter-spacing: 1px;
+.main-logo {
+  height: 100px;
+  width: auto; /* Giữ tỉ lệ ảnh */
+  margin-bottom: 15px; /* Khoảng cách dưới logo */
 }
 
 footer ul li a:hover {
