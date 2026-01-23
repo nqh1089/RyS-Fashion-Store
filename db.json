@@ -1,0 +1,67 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "ÁO DÀI 4 TÀ PHỐI HOẠ TIẾT",
+      "price": "1,899,000đ",
+      "imgMain": "/src/assets/Shop/1.1_ao_dai_4_ta_phoi_hoa_tiet.jpg",
+      "imgHover": "/src/assets/Shop/1.2_ao_dai_4_ta_phoi_hoa_tiet.jpg"
+    },
+    {
+      "id": "2",
+      "name": "ÁO DÀI GẤM AD08772",
+      "price": "1,699,000đ",
+      "imgMain": "/src/assets/Shop/2.1_ao_dai_gam.jpg",
+      "imgHover": "/src/assets/Shop/2.2_ao_dai_gam.jpg"
+    },
+    {
+      "id": "3",
+      "name": "ÁO DÀI GẤM HỒNG AD08792",
+      "price": "1,899,000đ",
+      "imgMain": "/src/assets/Shop/3.1_ao_dai_gam_hong.jpg",
+      "imgHover": "/src/assets/Shop/3.2_ao_dai_gam_hong.jpg"
+    },
+    {
+      "id": "4",
+      "name": "ÁO DÀI GẤM HOA ĐỎ AD08892",
+      "price": "1,799,000đ",
+      "imgMain": "/src/assets/Shop/4.1_ao_dai_gam_hoa_do.jpg",
+      "imgHover": "/src/assets/Shop/4.2_ao_dai_gam_hoa_do.jpg"
+    },
+    {
+      "id": "5",
+      "name": "ÁO DÀI HỒNG THÊU AD04052",
+      "price": "849,500đ",
+      "imgMain": "/src/assets/Shop/5.1_ao_dai_hong_theu.jpg",
+      "imgHover": "/src/assets/Shop/5.2_ao_dai_hong_theu.jpg"
+    },
+    {
+      "id": "6",
+      "name": "ÁO DÀI ĐÍNH CƯỜM AD04172",
+      "price": "899,500đ",
+      "imgMain": "/src/assets/Shop/6.1_ao_dai_dinh_cuom.jpg",
+      "imgHover": "/src/assets/Shop/6.2_ao_dai_dinh_cuom.jpg"
+    },
+    {
+      "id": "7",
+      "name": "ÁO DÀI ĐỎ CỔ TẾT AD03462",
+      "price": "799,500đ",
+      "imgMain": "/src/assets/Shop/7.1_ao_dai_do_co_tet.jpg",
+      "imgHover": "/src/assets/Shop/7.2_ao_dai_do_co_tet.jpg"
+    },
+    {
+      "id": "8",
+      "name": "ÁO DÀI THÊU HOA NỔI",
+      "price": "1,699,000đ",
+      "imgMain": "/src/assets/Shop/8.1_ao_dai_theu_hoa_noi.jpg",
+      "imgHover": "/src/assets/Shop/8.2_ao_dai_theu_hoa_noi.jpg"
+    },
+    {
+      "id": "9",
+      "name": "ÁO DÀI KIM SA AD08832",
+      "price": "1,899,000đ",
+      "imgMain": "/src/assets/Shop/9.1_ao_dai_kim_sa.jpg",
+      "imgHover": "/src/assets/Shop/9.2_ao_dai_kim_sa.jpg"
+    }
+  ]
+}
