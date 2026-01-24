@@ -3,7 +3,7 @@
     <div class="container position-relative mb-5">
       <div class="text-center mb-5">
         <h2 class="fw-light tracking-widest text-uppercase" style="font-size: 2rem">
-          BST Nàng thơ
+          Nàng Thơ Trong Nắng
         </h2>
       </div>
 
@@ -31,10 +31,12 @@
       <button class="custom-nav-btn slick-next-btn"><i class="bi bi-chevron-right"></i></button>
     </div>
 
-    <!-- Tone Đỏ Quyến Rũ -->
+    <!-- Tone Đỏ -->
     <div class="container position-relative">
       <div class="text-center mb-5">
-        <h2 class="fw-light tracking-widest text-uppercase" style="font-size: 2rem">Đỏ quý phái</h2>
+        <h2 class="fw-light tracking-widest text-uppercase" style="font-size: 2rem">
+          Sắc Đỏ Uy Nghi
+        </h2>
       </div>
 
       <div class="nem-slick-slider" v-if="redProducts.length > 0">
