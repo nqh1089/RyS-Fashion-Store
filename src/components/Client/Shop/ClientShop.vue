@@ -62,6 +62,26 @@
               </div>
             </div>
           </div>
+
+          <div class="pagination-wrapper w-100 d-flex justify-content-center mt-5">
+            <nav aria-label="Page navigation example">
+              <ul class="pagination pagination-custom border-0">
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
         </main>
       </div>
     </div>
@@ -155,6 +175,56 @@ onMounted(() => {
   font-size: 13px;
   font-weight: 600;
 }
+
+/* Số trang (Pagination) */
+/* Tùy chỉnh thanh phân trang căn giữa */
+.pagination-wrapper {
+  /* Đảm bảo khoảng cách với lưới sản phẩm phía trên */
+  padding-top: 20px;
+}
+
+.pagination-custom {
+  gap: 5px; /* Tạo khoảng cách nhỏ giữa các ô số */
+}
+
+.pagination-custom .page-link {
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #e0e0e0; /* Viền xám nhạt tinh tế */
+  padding: 8px 16px;
+  font-size: 14px;
+  min-width: 40px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+/* Ô đang được chọn: Nền đen, chữ trắng */
+.pagination-custom .page-item.active .page-link {
+  background-color: #000 !important;
+  border-color: #000 !important;
+  color: #fff !important;
+  font-weight: bold;
+}
+
+.pagination-custom .page-link:hover {
+  background-color: #f5f5f5;
+  color: #000;
+  border-color: #ccc;
+}
+
+/* Xóa bỏ hiệu ứng đổ bóng xanh mặc định của Bootstrap */
+.pagination-custom .page-link:focus {
+  box-shadow: none;
+}
+
+.product-grid-custom {
+  display: grid;
+  grid-template-columns: repeat(3, 319px); /* Khớp với độ rộng card */
+  gap: 30px;
+  justify-content: center; /* Đưa cả cụm 3 cột vào giữa */
+  margin: 0 auto;
+}
+
 @media (max-width: 1200px) {
   .product-grid-custom {
     grid-template-columns: repeat(2, 1fr);

@@ -29,6 +29,7 @@
       <button class="custom-nav-btn slick-next-btn"><i class="bi bi-chevron-right"></i></button>
     </div>
 
+    <!-- Tone Đỏ Quyến Rũ -->
     <div class="container position-relative">
       <div class="text-center mb-5">
         <h2 class="fw-light tracking-widest text-uppercase" style="font-size: 2rem">Tone Đỏ Quyến Rũ</h2>
