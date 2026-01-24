@@ -2,7 +2,9 @@
   <div class="product-detail-page py-5" v-if="product">
     <div class="container px-md-5">
       <nav aria-label="breadcrumb" class="mb-4">
-        <ol class="breadcrumb small text-uppercase fw-semibold tracking-widest border-0 bg-transparent p-0">
+        <ol
+          class="breadcrumb small text-uppercase fw-semibold tracking-widest border-0 bg-transparent p-0"
+        >
           <li class="breadcrumb-item">
             <router-link to="/" class="text-dark text-decoration-none">TRANG CHỦ</router-link>
           </li>
@@ -10,7 +12,7 @@
             <router-link to="/shop" class="text-dark text-decoration-none">ÁO DÀI</router-link>
           </li>
           <li class="breadcrumb-item active text-dark" aria-current="page">
-             {{ product.name }}
+            {{ product.name }}
           </li>
         </ol>
       </nav>
@@ -57,38 +59,54 @@
                 <span class="small fw-bold">KÍCH THƯỚC</span>
               </div>
               <div class="d-flex gap-2">
-                <button v-for="size in ['Size 4', 'Size 6', 'Size 8', 'Size 10']"
-                        :key="size"
-                        class="btn btn-outline-dark btn-sm rounded-0 px-3 py-2">
+                <button
+                  v-for="size in ['Size 4', 'Size 6', 'Size 8', 'Size 10']"
+                  :key="size"
+                  class="btn btn-outline-dark btn-sm rounded-0 px-3 py-2"
+                >
                   {{ size }}
                 </button>
               </div>
-              <br>
-              <a href="#" class="small text-dark text-decoration-underline mt-3">HƯỚNG DẪN CHỌN SIZE</a>
+              <br />
+              <a href="#" class="small text-dark text-decoration-underline mt-3"
+                >HƯỚNG DẪN CHỌN SIZE</a
+              >
             </div>
-
 
             <div class="mb-4">
               <span class="small fw-bold d-block mb-2">MÀU SẮC</span>
-              <div class="color-dot rounded-circle border p-1 d-inline-block"
-                   :style="{ backgroundColor: product.color === 'Đỏ' ? '#8B0000' : '#FFC0CB', width: '30px', height: '30px' }">
-              </div>
+              <div
+                class="color-dot rounded-circle border p-1 d-inline-block"
+                :style="{
+                  backgroundColor: product.color === 'Đỏ' ? '#8B0000' : '#FFC0CB',
+                  width: '30px',
+                  height: '30px',
+                }"
+              ></div>
             </div>
 
             <div class="d-flex flex-column gap-2 mb-5">
-              <div class="quantity-input border d-inline-flex align-items-center justify-content-between px-3 py-2 mb-2" style="width: 120px;">
+              <div
+                class="quantity-input border d-inline-flex align-items-center justify-content-between px-3 py-2 mb-2"
+                style="width: 120px"
+              >
                 <span class="cursor-pointer" @click="quantity > 1 ? quantity-- : null">-</span>
                 <span>{{ quantity }}</span>
                 <span class="cursor-pointer" @click="quantity++">+</span>
               </div>
 
-              <button class="btn btn-outline-dark rounded-0 py-3 fw-bold text-uppercase">Thêm vào giỏ</button>
+              <button class="btn btn-outline-dark rounded-0 py-3 fw-bold text-uppercase">
+                Thêm vào giỏ
+              </button>
               <button class="btn btn-dark rounded-0 py-3 fw-bold text-uppercase">Mua ngay</button>
             </div>
 
             <div class="product-description small text-muted">
               <p><strong>Chất liệu:</strong> Vải gấm</p>
-              <p><strong>Kiểu dáng:</strong> Áo dài thiết kế dáng chiết eo giúp tôn dáng tối đa, sử dụng phần cổ truyền thống mang tới sự thanh lịch cho người mặc.</p>
+              <p>
+                <strong>Kiểu dáng:</strong> Áo dài thiết kế dáng chiết eo giúp tôn dáng tối đa, sử
+                dụng phần cổ truyền thống mang tới sự thanh lịch cho người mặc.
+              </p>
               <p><strong>Sản phẩm thuộc dòng:</strong> Áo dài</p>
             </div>
           </div>
@@ -96,38 +114,59 @@
       </div>
     </div>
   </div>
+
+  <hr />
+
+  <RelatedProducts />
 </template>
 
-
 <script setup>
-import { ref, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
-import axios from 'axios';
+import { ref, onMounted, watch } from 'vue' // Thêm watch ở đây
+import { useRoute } from 'vue-router'
+import axios from 'axios'
+import RelatedProducts from './RelatedProducts.vue'
 
-const route = useRoute();
-const product = ref(null);
-const activeImage = ref(''); // Lưu trữ ảnh đang hiển thị to
-const quantity = ref(1);    // Số lượng sản phẩm
+const route = useRoute()
+const product = ref(null)
+const activeImage = ref('')
+const quantity = ref(1)
 
 const fetchProductDetail = async () => {
   try {
-    const id = route.params.id;
-    // const response = await axios.get(`http://localhost:3000/products/${id}`);
-    const response = await axios.get(`https://my-json-server.typicode.com/nqh1089/RyS-Fashion-Store/products/${id}`);
-    product.value = response.data;
-    activeImage.value = response.data.imgMain; // Mặc định hiển thị ảnh chính
+    const id = route.params.id
+    const response = await axios.get(
+      `https://my-json-server.typicode.com/nqh1089/RyS-Fashion-Store/products/${id}`,
+    )
+    product.value = response.data
+    activeImage.value = response.data.imgMain
+
+    // Cuộn lên đầu trang khi tải xong sản phẩm mới
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   } catch (error) {
-    console.error("Lỗi khi tải chi tiết sản phẩm:", error);
+    console.error('Lỗi khi tải chi tiết sản phẩm:', error)
   }
-};
+}
+
+// Lắng nghe sự thay đổi của ID trên URL
+watch(
+  () => route.params.id,
+  (newId) => {
+    if (newId) {
+      fetchProductDetail()
+    }
+  },
+)
 
 onMounted(() => {
-  fetchProductDetail();
-});
+  fetchProductDetail()
+})
 </script>
 
 <style scoped>
-.breadcrumb { font-size: 11px; letter-spacing: 2px; }
+.breadcrumb {
+  font-size: 11px;
+  letter-spacing: 2px;
+}
 
 .img-thumbnail {
   cursor: pointer;
@@ -170,9 +209,20 @@ onMounted(() => {
   overflow-y: auto;
   padding-right: 15px; */
 }
-.quantity-input span { user-select: none; }
-.cursor-pointer { cursor: pointer; font-weight: bold; }
-.btn:hover { opacity: 0.9; }
-.color-dot { cursor: pointer; }
-.tracking-tighter { letter-spacing: -0.5px; }
+.quantity-input span {
+  user-select: none;
+}
+.cursor-pointer {
+  cursor: pointer;
+  font-weight: bold;
+}
+.btn:hover {
+  opacity: 0.9;
+}
+.color-dot {
+  cursor: pointer;
+}
+.tracking-tighter {
+  letter-spacing: -0.5px;
+}
 </style>

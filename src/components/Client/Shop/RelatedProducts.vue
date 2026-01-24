@@ -2,13 +2,13 @@
   <section class="product-carousel-section my-5">
     <div class="container position-relative mb-5">
       <div class="text-center mb-5">
-        <h2 class="fw-light tracking-widest text-uppercase" style="font-size: 2rem">
-          BST Nàng thơ
-        </h2>
+        <h3 class="fw-light tracking-widest text-uppercase" style="font-size: 2rem">
+          Sản phẩm tương tự
+        </h3>
       </div>
 
-      <div class="nem-slick-slider" v-if="pinkProducts.length > 0">
-        <div v-for="product in pinkProducts" :key="product.id" class="product-item">
+      <div class="nem-slick-slider" v-if="allProducts.length > 0">
+        <div v-for="product in allProducts" :key="product.id" class="product-item">
           <div class="product-card">
             <div class="product-img-container">
               <router-link :to="`/product/${product.id}`">
@@ -30,41 +30,11 @@
       <button class="custom-nav-btn slick-prev-btn"><i class="bi bi-chevron-left"></i></button>
       <button class="custom-nav-btn slick-next-btn"><i class="bi bi-chevron-right"></i></button>
     </div>
-
-    <!-- Tone Đỏ Quyến Rũ -->
-    <div class="container position-relative">
-      <div class="text-center mb-5">
-        <h2 class="fw-light tracking-widest text-uppercase" style="font-size: 2rem">Đỏ quý phái</h2>
-      </div>
-
-      <div class="nem-slick-slider" v-if="redProducts.length > 0">
-        <div v-for="product in redProducts" :key="product.id" class="product-item">
-          <div class="product-card">
-            <div class="product-img-container">
-              <router-link :to="`/product/${product.id}`">
-                <img :src="product.imgMain" class="img-main" :alt="product.name" />
-                <img :src="product.imgHover" class="img-hover" :alt="product.name + ' Hover'" />
-                <div class="product-overlay">
-                  <span class="btn-xem-them">XEM THÊM</span>
-                </div>
-              </router-link>
-            </div>
-            <div class="product-info mt-2 text-center">
-              <p class="product-name fs-7">{{ product.name }}</p>
-              <p class="product-price">{{ product.price }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <button class="custom-nav-btn slick-prev-btn"><i class="bi bi-chevron-left"></i></button>
-      <button class="custom-nav-btn slick-next-btn"><i class="bi bi-chevron-right"></i></button>
-    </div>
   </section>
 </template>
 
 <script setup>
-import { onMounted, nextTick, ref, computed } from 'vue'
+import { onMounted, nextTick, ref } from 'vue'
 import axios from 'axios'
 import $ from 'jquery'
 import 'slick-carousel'
@@ -85,11 +55,7 @@ const fetchProducts = async () => {
   }
 }
 
-// Logic lọc màu
-const pinkProducts = computed(() => allProducts.value.filter((p) => p.color === 'Hồng'))
-const redProducts = computed(() => allProducts.value.filter((p) => p.color === 'Đỏ'))
-
-//
+// Khởi chạy khi component được gắn vào DOM
 onMounted(async () => {
   await fetchProducts()
   await nextTick()
