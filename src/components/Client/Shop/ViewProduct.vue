@@ -55,7 +55,6 @@
             <div class="mb-4">
               <div class="d-flex justify-content-between mb-2">
                 <span class="small fw-bold">KÍCH THƯỚC</span>
-                <a href="#" class="small text-dark text-decoration-underline">HƯỚNG DẪN CHỌN SIZE</a>
               </div>
               <div class="d-flex gap-2">
                 <button v-for="size in ['Size 4', 'Size 6', 'Size 8', 'Size 10']"
@@ -64,7 +63,10 @@
                   {{ size }}
                 </button>
               </div>
+              <br>
+              <a href="#" class="small text-dark text-decoration-underline mt-3">HƯỚNG DẪN CHỌN SIZE</a>
             </div>
+
 
             <div class="mb-4">
               <span class="small fw-bold d-block mb-2">MÀU SẮC</span>
@@ -85,9 +87,9 @@
             </div>
 
             <div class="product-description small text-muted">
-              <p><strong>Chất liệu:</strong> vải gấm</p>
-              <p><strong>Kiểu dáng:</strong> áo dài thiết kế dáng chiết eo giúp tôn dáng tối đa, sử dụng phần cổ truyền thống mang tới sự thanh lịch cho người mặc.</p>
-              <p><strong>Sản phẩm thuộc dòng:</strong> NEM NEW</p>
+              <p><strong>Chất liệu:</strong> Vải gấm</p>
+              <p><strong>Kiểu dáng:</strong> Áo dài thiết kế dáng chiết eo giúp tôn dáng tối đa, sử dụng phần cổ truyền thống mang tới sự thanh lịch cho người mặc.</p>
+              <p><strong>Sản phẩm thuộc dòng:</strong> Áo dài</p>
             </div>
           </div>
         </div>
@@ -95,6 +97,7 @@
     </div>
   </div>
 </template>
+
 
 <script setup>
 import { ref, onMounted } from 'vue';
@@ -109,7 +112,8 @@ const quantity = ref(1);    // Số lượng sản phẩm
 const fetchProductDetail = async () => {
   try {
     const id = route.params.id;
-    const response = await axios.get(`http://localhost:3000/products/${id}`);
+    // const response = await axios.get(`http://localhost:3000/products/${id}`);
+    const response = await axios.get(`https://my-json-server.typicode.com/nqh1089/RyS-Fashion-Store/products/${id}`);
     product.value = response.data;
     activeImage.value = response.data.imgMain; // Mặc định hiển thị ảnh chính
   } catch (error) {

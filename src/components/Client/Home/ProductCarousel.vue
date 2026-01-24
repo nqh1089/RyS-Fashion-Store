@@ -72,7 +72,8 @@ const allProducts = ref([])
 // Load dữ liệu từ JSON Server
 const fetchProducts = async () => {
   try {
-    const response = await axios.get('http://localhost:3000/products')
+    // const response = await axios.get('http://localhost:3000/products')
+    const response = await axios.get('https://my-json-server.typicode.com/nqh1089/RyS-Fashion-Store/products')
     allProducts.value = response.data
   } catch (error) {
     console.error("Lỗi kết nối db.json:", error)

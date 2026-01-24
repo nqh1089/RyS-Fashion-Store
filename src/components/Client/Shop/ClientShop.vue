@@ -78,7 +78,8 @@ const products = ref([]);
 // Hàm gọi API từ JSON Server (Port 3000)
 const fetchProducts = async () => {
   try {
-    const response = await axios.get('http://localhost:3000/products');
+    // const response = await axios.get('http://localhost:3000/products');
+    const response = await axios.get('https://my-json-server.typicode.com/nqh1089/RyS-Fashion-Store/products');
     products.value = response.data;
   } catch (error) {
     console.error("Lỗi khi tải dữ liệu từ server:", error);
