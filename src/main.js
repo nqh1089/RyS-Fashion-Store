@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from './router/Client' // Nhúng file router bạn đã tạo
+import router from './router/index' // trỏ vào file index.js tổng
 
 // Nhúng Bootstrap và Icon
 import 'bootstrap/dist/css/bootstrap.min.css'

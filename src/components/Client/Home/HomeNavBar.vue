@@ -6,11 +6,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
     <div class="container">
       <router-link to="/" class="navbar-brand">
-        <img
-          src="@/assets/Home/RyS.png"
-          alt="RyS Fashion Store"
-          class="main-logo"
-        />
+        <img src="@/assets/Home/RyS.png" alt="RyS Fashion Store" class="main-logo" />
       </router-link>
 
       <div class="collapse navbar-collapse" id="navbarNav">
@@ -27,7 +23,14 @@
             </router-link>
             <ul class="dropdown-menu border-0 shadow-sm rounded-0">
               <li><router-link class="dropdown-item py-2" to="/shop">Áo dài</router-link></li>
-              <li><router-link class="dropdown-item py-2 d-flex justify-content-between align-items-center" to=""> Quần <i class="bi bi-chevron-right small-icon"></i></router-link></li>
+              <li>
+                <router-link
+                  class="dropdown-item py-2 d-flex justify-content-between align-items-center"
+                  to=""
+                >
+                  Quần <i class="bi bi-chevron-right small-icon"></i
+                ></router-link>
+              </li>
             </ul>
           </li>
 
@@ -41,10 +44,18 @@
 
         <div class="d-flex align-items-center gap-3">
           <a href="#" class="text-dark"><i class="bi bi-search"></i></a>
-          <a href="#" class="text-dark"><i class="bi bi-person"></i></a>
+
+          <router-link to="/login" class="text-dark">
+            <i class="bi bi-person"></i>
+          </router-link>
+
           <a href="#" class="text-dark position-relative">
             <i class="bi bi-bag"></i>
-            <span class="badge rounded-pill bg-dark position-absolute top-0 start-100 translate-middle" style="font-size: 0.6rem">0</span>
+            <span
+              class="badge rounded-pill bg-dark position-absolute top-0 start-100 translate-middle"
+              style="font-size: 0.6rem"
+              >0</span
+            >
           </a>
         </div>
       </div>
@@ -53,7 +64,6 @@
 </template>
 
 <style scoped>
-
 /* Logo */
 .main-logo {
   height: 50px; /* Điều chỉnh độ cao phù hợp với thanh menu */
@@ -66,7 +76,6 @@
 .main-logo:hover {
   transform: scale(1.05); /* Hiệu ứng phóng nhẹ khi di chuột */
 }
-
 
 /* Hiệu ứng gạch chân */
 .nav-link {
@@ -121,12 +130,16 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>
-
-
 
 <!-- <template>
   <div class="py-2 bg-dark text-white text-center small tracking-widest">
