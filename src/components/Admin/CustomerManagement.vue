@@ -123,6 +123,7 @@ const customers = ref([
   },
 ])
 
+// Lấy chữ cái đầu của tên
 const getInitials = (name) => {
   return name
     .split(' ')
@@ -132,6 +133,7 @@ const getInitials = (name) => {
     .toUpperCase()
 }
 
+// Lấy class theo hạng thẻ
 const getRankClass = (rank) => {
   if (rank === 'VIP') return 'bg-dark text-white'
   if (rank === 'GOLD') return 'bg-warning text-dark'

@@ -58,12 +58,12 @@ defineProps(['title'])
   margin: 0;
 }
 
-/* KHU VỰC QUYẾT ĐỊNH HIỆU ỨNG THẢ XUỐNG */
+/* Dropdown menu */
 .custom-account-dropdown {
   position: relative;
 }
 
-/* Khi hover vào wrapper thì hiện menu */
+/* Khi hover vào => hiện menu */
 .custom-account-dropdown:hover .dropdown-menu {
   display: block;
   margin-top: 0;
@@ -86,11 +86,10 @@ defineProps(['title'])
   align-items: center;
 }
 
-/* Style cho các item trong menu dropdown */
+/* Style item trong menu dropdown */
 .dropdown-menu {
   min-width: 200px;
   font-size: 13px;
-  /* Đảm bảo menu nằm ngay dưới avatar */
   top: 100%;
   right: 0;
 }

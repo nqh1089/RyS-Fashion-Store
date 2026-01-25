@@ -33,21 +33,21 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="product in filteredProducts" :key="product.id">
+            <tr v-for="SanPham in TimKiemSanPham" :key="SanPham.id">
               <td class="ps-4">
                 <div class="product-img-bg bg-light">
-                  <img :src="product.imgMain" class="img-fluid" :alt="product.name" />
+                  <img :src="SanPham.imgMain" class="img-fluid" :alt="SanPham.name" />
                 </div>
               </td>
               <td>
-                <p class="mb-0 fw-bold small text-uppercase">{{ product.name }}</p>
-                <small class="text-muted">ID: #{{ product.id }}</small>
+                <p class="mb-0 fw-bold small text-uppercase">{{ SanPham.name }}</p>
+                <small class="text-muted">ID: #{{ SanPham.id }}</small>
               </td>
               <td>
-                <span class="small">{{ product.color }}</span>
+                <span class="small">{{ SanPham.color }}</span>
               </td>
               <td>
-                <span class="fw-bold small">{{ product.price }}</span>
+                <span class="fw-bold small">{{ SanPham.price }}</span>
               </td>
               <td>
                 <span class="badge bg-dark-subtle text-dark rounded-0 fw-normal small"
@@ -82,17 +82,17 @@
 import { ref, onMounted, computed } from 'vue'
 import axios from 'axios'
 
-const products = ref([])
+const SanPham = ref([])
 const loading = ref(true)
-const searchQuery = ref('')
+const TuKhoaTimKiem = ref('')
 
-// Lấy dữ liệu từ API của bạn
+// Lấy dữ liệu sản phẩm
 const fetchProducts = async () => {
   try {
     const response = await axios.get(
       'https://my-json-server.typicode.com/nqh1089/RyS-Fashion-Store/products',
     )
-    products.value = response.data
+    SanPham.value = response.data
   } catch (error) {
     console.error('Lỗi khi tải dữ liệu sản phẩm:', error)
   } finally {
@@ -101,12 +101,13 @@ const fetchProducts = async () => {
 }
 
 // Logic tìm kiếm sản phẩm
-const filteredProducts = computed(() => {
-  return products.value.filter((p) =>
-    p.name.toLowerCase().includes(searchQuery.value.toLowerCase()),
+const TimKiemSanPham = computed(() => {
+  return SanPham.value.filter((p) =>
+    p.name.toLowerCase().includes(TuKhoaTimKiem.value.toLowerCase()),
   )
 })
 
+// Gọi hàm fetchProducts khi component được mounted
 onMounted(() => {
   fetchProducts()
 })

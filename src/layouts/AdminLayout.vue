@@ -19,13 +19,12 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
-// Lấy tên trang từ meta của router để hiển thị lên Header
 const currentRouteName = computed(() => route.meta.title || 'QUẢN TRỊ')
 </script>
 
 <style>
 .admin-main-content {
-  margin-left: 280px; /* Bằng chiều rộng Sidebar */
+  margin-left: 280px;
   min-height: 100vh;
   background-color: #fff;
 }

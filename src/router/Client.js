@@ -3,7 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import Shop from '../components/Client/Shop/ClientShop.vue'
 import ViewProduct from '../components/Client/Shop/ViewProduct.vue'
 
-const clientRoutes = [ // Đổi thành mảng
+const clientRoutes = [
   {
     path: '/',
     component: ClientLayout,

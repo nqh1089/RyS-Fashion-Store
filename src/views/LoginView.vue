@@ -3,7 +3,7 @@
     <div class="container" :class="{ active: isRegister }">
       <div class="form-box login">
         <form @submit.prevent="HandleLogin">
-          <h1>Login</h1>
+          <h1>Đăng Nhập</h1>
 
           <div class="input-box">
             <input type="text" v-model="loginData.username" placeholder="Username" required />
@@ -16,24 +16,16 @@
           </div>
 
           <div class="forgot-link">
-            <a href="#">Forgot Password?</a>
+            <a href="#">Quên mật khẩu?</a>
           </div>
 
-          <button type="submit" class="btn">Login</button>
-
-          <p>or login with social platforms</p>
-          <div class="social-icons">
-            <a href="#"><i class="bx bxl-google"></i></a>
-            <a href="#"><i class="bx bxl-facebook"></i></a>
-            <a href="#"><i class="bx bxl-github"></i></a>
-            <a href="#"><i class="bx bxl-linkedin"></i></a>
-          </div>
+          <button type="submit" class="btn">Đăng Nhập</button>
         </form>
       </div>
 
       <div class="form-box register">
         <form @submit.prevent="HandleRegister">
-          <h1>Registration</h1>
+          <h1>Đăng Ký</h1>
           <div class="input-box">
             <input type="text" placeholder="Username" required />
             <i class="bx bxs-user"></i>
@@ -46,27 +38,20 @@
             <input type="password" placeholder="Password" required />
             <i class="bx bxs-lock-alt"></i>
           </div>
-          <button type="submit" class="btn">Register</button>
-          <p>or register with social platforms</p>
-          <div class="social-icons">
-            <a href="#"><i class="bx bxl-google"></i></a>
-            <a href="#"><i class="bx bxl-facebook"></i></a>
-            <a href="#"><i class="bx bxl-github"></i></a>
-            <a href="#"><i class="bx bxl-linkedin"></i></a>
-          </div>
+          <button type="submit" class="btn">Đăng ký</button>
         </form>
       </div>
 
       <div class="toggle-box">
         <div class="toggle-panel toggle-left">
           <h1>Hello, Welcome!</h1>
-          <p>Don't have an account?</p>
-          <button class="btn" @click="isRegister = true">Register</button>
+          <p>Bạn chưa có tài khoản?</p>
+          <button class="btn" @click="isRegister = true">Đăng ký</button>
         </div>
         <div class="toggle-panel toggle-right">
           <h1>Welcome Back!</h1>
-          <p>Already have an account?</p>
-          <button class="btn" @click="isRegister = false">Login</button>
+          <p>Bạn đã có tài khoản?</p>
+          <button class="btn" @click="isRegister = false">Đăng nhập</button>
         </div>
       </div>
     </div>
@@ -80,35 +65,29 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const isRegister = ref(false)
 
-// PHẦN 1: Khai báo biến loginData để hứng dữ liệu từ v-model
+// Khai báo biến loginData để hứng dữ liệu từ v-model
 const loginData = ref({
   username: '',
   password: '',
 })
 
-// PHẦN 1: Logic kiểm tra quyền và chuyển hướng
+// Kiểm tra quyền và chuyển hướng
 const HandleLogin = () => {
-  const { username, password } = loginData.value // Phân tách biến cho gọn
+  const { username, password } = loginData.value
 
-  // 1. Kiểm tra tài khoản ADMIN
+  // Tài khoản ADMIN
   if (username === 'ad' && password === '123') {
     alert('Đăng nhập ADMIN thành công!')
     router.push('/admin/dashboard')
   }
 
-  // 2. Kiểm tra tài khoản USER cụ thể (ní mới thêm ở đây)
-  else if (username === 'user' && password === '123') {
-    alert('Chào mừng User quay trở lại!')
-    router.push('/')
-  }
-
-  // 3. Kiểm tra Khách hàng khác (Chỉ cần không để trống)
+  // Tài khoản CLIENT
   else if (username !== '' && password !== '') {
-    alert('Đăng nhập thành công với quyền Khách hàng!')
+    alert('Đăng nhập thành công!')
     router.push('/')
   }
 
-  // 4. Trường hợp để trống một trong hai ô
+  // Nếu để trống
   else {
     alert('Vui lòng nhập đầy đủ thông tin!')
   }
@@ -122,9 +101,8 @@ const HandleRegister = () => {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
-@import url('https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css');
 
-/* THAY BODY = WRAPPER */
+/*  */
 .login-wrapper {
   display: flex;
   justify-content: center;
@@ -133,8 +111,6 @@ const HandleRegister = () => {
   background: linear-gradient(90deg, #e2e2e2, #c9d6ff);
   font-family: 'Poppins', sans-serif;
 }
-
-/* --- PHONG CÁCH RYS FASHION - PHIÊN BẢN BO GÓC --- */
 
 * {
   margin: 0;
@@ -159,7 +135,6 @@ body {
   height: 550px;
   background: #fff;
   margin: 20px;
-  /* TRẢ LẠI BO GÓC 30PX ĐÂY NÍ */
   border-radius: 30px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   overflow: hidden;
@@ -169,7 +144,7 @@ body {
   font-size: 28px;
   text-transform: uppercase;
   letter-spacing: 3px;
-  font-weight: 600; /* Tăng độ đậm tí cho hợp với bo góc */
+  font-weight: 600;
   margin-bottom: 20px;
 }
 
@@ -195,6 +170,8 @@ form {
   text-align: center;
   padding: 40px;
   z-index: 1;
+
+  /* Đẩy nhanh tốc độ chuyển đổi */
   transition:
     0.6s ease-in-out 1.2s,
     visibility 0s 1s;
@@ -211,6 +188,7 @@ form {
   visibility: visible;
 }
 
+/* INPUT */
 .input-box {
   position: relative;
   margin: 25px 0;
@@ -219,8 +197,7 @@ form {
 .input-box input {
   width: 100%;
   padding: 13px 20px;
-  background: #f0f0f0; /* Hơi xám nhẹ cho hiện đại */
-  /* BO GÓC CHO INPUT */
+  background: #f0f0f0;
   border-radius: 10px;
   border: 1px solid transparent;
   outline: none;
@@ -252,46 +229,28 @@ form {
   color: #888;
 }
 
-/* NÚT BẤM ĐEN - TRẮNG NHƯNG BO GÓC */
+/* btn */
 .btn {
   width: 100%;
   height: 50px;
-  background: #000; /* Mặc định nền đen */
-  border-radius: 10px; /* Giữ bo góc 10px như bạn muốn */
-  border: 1px solid #000; /* Viền đen mặc định */
+  background: #000;
+  border-radius: 10px;
+  border: 1px solid #000;
   cursor: pointer;
   font-size: 13px;
-  color: #fff; /* Chữ trắng mặc định */
+  color: #fff;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 600;
-  transition: all 0.3s ease; /* Hiệu ứng chuyển đổi mượt mà */
+  transition: all 0.3s ease;
   margin-top: 10px;
 }
 
-/* Hiệu ứng Hover: Nền trắng, viền đen, chữ đen */
+/* Nền trắng, viền đen, chữ đen */
 .btn:hover {
-  background: #fff !important; /* Đổi sang nền trắng khi hover */
-  color: #000 !important; /* Đổi sang chữ đen để nổi bật trên nền trắng */
-  border: 1px solid #000 !important; /* Hiện rõ viền đen */
-}
-
-.social-icons {
-  display: flex;
-  justify-content: center;
-  margin-top: 15px;
-}
-
-.social-icons a {
-  display: inline-flex;
-  padding: 10px;
-  border: 1px solid #eee;
-  /* BO GÓC CHO ICON MẠNG XÃ HỘI */
-  border-radius: 10px;
-  font-size: 20px;
-  color: #000;
-  margin: 0 8px;
-  transition: 0.3s;
+  background: #fff !important;
+  color: #000 !important;
+  border: 1px solid #000 !important;
 }
 
 .social-icons a:hover {
@@ -312,7 +271,6 @@ form {
   width: 300%;
   height: 100%;
   background: #000;
-  /* TRẢ LẠI CÁI ĐƯỜNG CONG TỔNG THỂ */
   border-radius: 150px;
   z-index: 2;
   transition: 1.8s ease-in-out;

@@ -1,16 +1,17 @@
 <template>
   <div class="dashboard-container">
     <div class="row g-4 mb-5">
-      <div class="col-md-3" v-for="(stat, index) in quickStats" :key="index">
+      <div class="col-md-3" v-for="(SoLieu, index) in ThongKe" :key="index">
         <div class="stat-card p-4 shadow-sm border-0 h-100 bg-white">
           <div class="d-flex justify-content-between align-items-start mb-3">
             <div class="stat-icon p-3 bg-light text-dark">
-              <i :class="stat.icon"></i>
+              <i :class="SoLieu.icon"></i>
             </div>
-            <span :class="stat.trendClass + ' small fw-bold'">{{ stat.trend }}</span>
           </div>
-          <h6 class="text-secondary text-uppercase small tracking-widest mb-2">{{ stat.label }}</h6>
-          <h3 class="fw-bold m-0">{{ stat.value }}</h3>
+          <h6 class="text-secondary text-uppercase small tracking-widest mb-2">
+            {{ SoLieu.label }}
+          </h6>
+          <h3 class="fw-bold m-0">{{ SoLieu.value }}</h3>
         </div>
       </div>
     </div>
@@ -29,7 +30,7 @@
           <h6 class="text-uppercase tracking-widest mb-4 fw-bold">Đơn hàng mới nhất</h6>
           <div class="order-list">
             <div
-              v-for="order in recentOrders"
+              v-for="order in DonHangMoiNhat"
               :key="order.id"
               class="order-item d-flex align-items-center mb-3 pb-3 border-bottom border-light"
             >
@@ -40,13 +41,13 @@
                 <i class="bi bi-bag-check small"></i>
               </div>
               <div class="flex-grow-1">
-                <p class="mb-0 small fw-bold">{{ order.customer }}</p>
-                <small class="text-muted">{{ order.time }}</small>
+                <p class="mb-0 small fw-bold">{{ order.TenNguoiMua }}</p>
+                <small class="text-time">{{ order.ThoiGianDatHang }}</small>
               </div>
               <div class="text-end">
-                <p class="mb-0 small fw-bold">{{ order.amount }}</p>
+                <p class="mb-0 small fw-bold">{{ order.TongTien }}</p>
                 <span class="badge bg-dark rounded-0" style="font-size: 10px">{{
-                  order.status
+                  order.TrangThai
                 }}</span>
               </div>
             </div>
@@ -63,42 +64,58 @@
 </template>
 
 <script setup>
-const quickStats = [
+const ThongKe = [
   {
     label: 'Doanh thu hôm nay',
-    value: '12.500.000đ',
+    value: '12.345.678 VNĐ',
     icon: 'bi bi-currency-dollar',
-    trend: '+15%',
-    trendClass: 'text-success',
   },
   {
     label: 'Đơn hàng mới',
-    value: '48',
+    value: '68',
     icon: 'bi bi-cart3',
-    trend: '+5%',
-    trendClass: 'text-success',
   },
   {
     label: 'Khách hàng mới',
-    value: '12',
+    value: '10',
     icon: 'bi bi-person-plus',
-    trend: '-2%',
-    trendClass: 'text-danger',
   },
   {
-    label: 'Tỉ lệ chuyển đổi',
-    value: '3.2%',
-    icon: 'bi bi-graph-up-arrow',
-    trend: '+1%',
-    trendClass: 'text-success',
+    label: 'Tổng số sản phẩm',
+    value: '89',
+    icon: 'bi bi-box-seam',
   },
 ]
 
-const recentOrders = [
-  { id: 1, customer: 'Nguyễn Văn A', time: '5 phút trước', amount: '1.250k', status: 'Chờ xử lý' },
-  { id: 2, customer: 'Trần Thị B', time: '20 phút trước', amount: '890k', status: 'Đã thanh toán' },
-  { id: 3, customer: 'Lê Văn C', time: '1 giờ trước', amount: '2.100k', status: 'Đang giao' },
-  { id: 4, customer: 'Phạm Minh D', time: '2 giờ trước', amount: '550k', status: 'Hoàn thành' },
+const DonHangMoiNhat = [
+  {
+    id: 1,
+    TenNguoiMua: 'Pato Miss',
+    ThoiGianDatHang: '5 phút trước',
+    TongTien: '520.000đ',
+    TrangThai: 'Chờ xử lý',
+  },
+  {
+    id: 2,
+    TenNguoiMua: 'Trần Ngọc B',
+    ThoiGianDatHang: '20 phút trước',
+    TongTien: '890.000đ',
+    TrangThai: 'Đã thanh toán',
+  },
+  {
+    id: 3,
+    TenNguoiMua: 'Đào Yến Vi',
+    ThoiGianDatHang: '1 giờ trước',
+    TongTien: '2.100.000đ',
+    TrangThai: 'Đang giao',
+  },
+  {
+    id: 4,
+    TenNguoiMua: 'Nguyễn Trần Diệu Nhi',
+    ThoiGianDatHang: '2 giờ trước',
+    TongTien: '550.000đ',
+    TrangThai: 'Hoàn thành',
+  },
 ]
 </script>
 

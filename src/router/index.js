@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import adminRoutes from './Admin.js' // Nhận về mảng admin
-import clientRoutes from './Client.js' // Nhận về mảng client
+import adminRoutes from './Admin.js'
+import clientRoutes from './Client.js'
 import LoginView from '@/views/LoginView.vue'
 
 const routes = [
@@ -9,14 +9,14 @@ const routes = [
     name: 'Login',
     component: LoginView,
   },
-  ...clientRoutes, // Giải nén mảng client
-  ...adminRoutes, // Giải nén mảng admin
+  ...clientRoutes,
+  ...adminRoutes,
 ]
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
-  scrollBehavior() {
+  scrollBehavior() { // Luôn cuộn về đầu trang khi chuyển trang
     return { top: 0 }
   },
 })

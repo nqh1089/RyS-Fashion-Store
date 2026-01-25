@@ -1,7 +1,6 @@
 import AdminLayout from '@/layouts/AdminLayout.vue'
 
 const adminRoutes = [
-  // Đổi tên thành mảng để index.js giải nén được
   {
     path: '/admin',
     component: AdminLayout,
@@ -10,7 +9,6 @@ const adminRoutes = [
       {
         path: 'dashboard',
         name: 'AdminDashboard',
-        // Đảm bảo file AdminDashboard.vue đã tồn tại trong thư mục components/Admin
         component: () => import('@/components/Admin/AdminDashboard.vue'),
         meta: { title: 'TỔNG QUAN' },
       },
@@ -48,4 +46,4 @@ const adminRoutes = [
   },
 ]
 
-export default adminRoutes // Export mảng thay vì đối tượng router
+export default adminRoutes

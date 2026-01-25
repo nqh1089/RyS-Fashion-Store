@@ -95,9 +95,9 @@ const searchQuery = ref('')
 const employees = ref([
   {
     id: 1,
-    empId: 'NV001',
+    ma: 'NV01',
     name: 'Đặng Quốc Huy',
-    role: 'Quản trị viên',
+    role: 'Quản lý',
     phone: '0901234567',
     email: 'huydq@rys.vn',
     startDate: '01/01/2023',
@@ -105,7 +105,7 @@ const employees = ref([
   },
   {
     id: 2,
-    empId: 'NV005',
+    empId: 'NV05',
     name: 'Lê Thị Thu Thảo',
     role: 'Bán hàng',
     phone: '0988776655',
