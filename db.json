@@ -73,29 +73,35 @@
       "imgHover": "/src/assets/Shop/9.2_ao_dai_kim_sa.jpg"
     }
   ],
-
   "employees": [
     {
-      "id": 1,
-      "empId": "NV01",
-      "account": "nqh1089",
+      "id": "1",
       "name": "Nguyễn Quang Huy",
       "role": "Quản lý",
-      "phone": "0856666888",
-      "email": "huynq@rys.vn",
-      "startDate": "2023-01-01",
-      "active": true
+      "phone": "0865623541",
+      "email": "huynq@rys",
+      "active": true,
+      "startDate": "2026-01-26"
     },
     {
       "id": 2,
-      "empId": "NV05",
-      "account": "anhdp",
-      "name": "Đặng Phương Anh",
-      "role": "Bán hàng",
-      "phone": "0948886886",
-      "email": "anhdp@rys.vn",
-      "startDate": "2023-06-15",
-      "active": true
+      "account": "nqh1089",
+      "name": "huy",
+      "role": "Nhân viên",
+      "phone": "08888",
+      "email": "nq@rys",
+      "active": true,
+      "startDate": "2026-01-26"
+    },
+    {
+      "id": 3,
+      "account": "hehe",
+      "name": "hehe",
+      "role": "Nhân viên",
+      "phone": "21212",
+      "email": "he@he",
+      "active": true,
+      "startDate": "2026-01-26"
     }
-]
+  ]
 }
