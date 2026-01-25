@@ -76,30 +76,11 @@
   "employees": [
     {
       "id": "1",
+      "account": "nqh1089",
       "name": "Nguyễn Quang Huy",
       "role": "Quản lý",
-      "phone": "0865623541",
+      "phone": "086886886",
       "email": "huynq@rys",
-      "active": true,
-      "startDate": "2026-01-26"
-    },
-    {
-      "id": 2,
-      "account": "nqh1089",
-      "name": "huy",
-      "role": "Nhân viên",
-      "phone": "08888",
-      "email": "nq@rys",
-      "active": true,
-      "startDate": "2026-01-26"
-    },
-    {
-      "id": 3,
-      "account": "hehe",
-      "name": "hehe",
-      "role": "Nhân viên",
-      "phone": "21212",
-      "email": "he@he",
       "active": true,
       "startDate": "2026-01-26"
     }

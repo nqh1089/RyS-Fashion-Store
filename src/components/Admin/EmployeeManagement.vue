@@ -27,18 +27,18 @@
         <table class="table table-hover align-middle mb-0 custom-table">
           <thead>
             <tr class="text-uppercase tracking-widest small text-secondary bg-light">
-              <th class="ps-4 py-3">Nhân viên</th>
-              <th>Chức vụ</th>
-              <th>Liên hệ</th>
-              <th>Ngày vào làm</th>
-              <th>Trạng thái</th>
-              <th class="text-end pe-4">Thao tác</th>
+              <th class="text-center ps-4 py-3">Nhân viên</th>
+              <th class="text-center">Chức vụ</th>
+              <th class="text-center">Liên hệ</th>
+              <th class="text-center">Ngày vào làm</th>
+              <th class="text-center">Trạng thái</th>
+              <th class="text-center">Thao tác</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="emp in filteredEmployees" :key="emp.id" class="align-middle border-bottom">
               <td class="ps-4 py-3">
-                <div class="d-flex align-items-center">
+                <div class="general d-flex align-items-center">
                   <div class="emp-avatar-v2 me-3 d-flex align-items-center justify-content-center">
                     <i class="bi bi-person text-secondary"></i>
                   </div>
@@ -52,19 +52,32 @@
                 </div>
               </td>
               <td>
-                <span class="role-badge">{{ emp.role }}</span>
+                <span class="d-flex justify-content-center align-items-center role-badge">{{
+                  emp.role
+                }}</span>
               </td>
               <td>
                 <div class="contact-info">
-                  <p class="mb-0 text-dark-emphasis contact-primary">{{ emp.phone }}</p>
-                  <p class="mb-0 text-muted opacity-75 contact-secondary">{{ emp.email }}</p>
+                  <p class="mb-0 d-flex justify-content-center align-items-center contact-primary">
+                    {{ emp.phone }}
+                  </p>
+                  <p
+                    class="mb-0 d-flex justify-content-center align-items-center opacity-75 contact-secondary"
+                  >
+                    {{ emp.email }}
+                  </p>
                 </div>
               </td>
               <td>
-                <span class="text-secondary-emphasis date-text">{{ emp.startDate }}</span>
+                <span
+                  class="text-secondary-emphasis d-flex justify-content-center align-items-center date-text"
+                  >{{ emp.startDate }}</span
+                >
               </td>
               <td>
-                <div class="form-check form-switch d-flex align-items-center">
+                <div
+                  class="form-check form-switch d-flex justify-content-center align-items-center"
+                >
                   <input
                     class="form-check-input custom-switch-v2 shadow-none"
                     type="checkbox"
@@ -79,9 +92,9 @@
                   </span>
                 </div>
               </td>
-              <td class="text-end pe-4">
-                <div class="action-buttons">
-                  <button class="btn-action me-2" title="Chỉnh sửa" @click="openModal(emp)">
+              <td class="text-center">
+                <div class="action-buttons d-flex justify-content-center align-items-center">
+                  <button class="btn-action me-3" title="Chỉnh sửa" @click="openModal(emp)">
                     <i class="bi bi-pencil-square"></i>
                   </button>
                   <button
@@ -117,12 +130,10 @@
           <form @submit.prevent="saveEmployee">
             <div class="modal-body py-4">
               <div class="mb-3">
-                <label class="small text-uppercase tracking-widest text-secondary mb-2"
-                  >ID Hệ thống</label
-                >
+                <label class="small text-uppercase tracking-widest text-secondary mb-2">ID</label>
                 <input
                   type="text"
-                  :value="isEdit ? form.id : '(Tự động sinh)'"
+                  :value="isEdit ? form.id : ''"
                   class="form-control rounded-0 border bg-light text-muted fw-bold shadow-none"
                   disabled
                 />
@@ -130,7 +141,7 @@
 
               <div class="mb-3">
                 <label class="small text-uppercase tracking-widest text-secondary mb-2"
-                  >Account đăng nhập</label
+                  >Account</label
                 >
                 <input
                   type="text"
@@ -138,7 +149,6 @@
                   class="form-control rounded-0 border text-lowercase shadow-none"
                   :class="{ 'bg-light text-muted': isEdit }"
                   :disabled="isEdit"
-                  placeholder="ví dụ: nqh1089"
                   required
                 />
               </div>
@@ -267,7 +277,7 @@ const openModal = (emp = null) => {
   showModal.value = true
 }
 
-// 4. Lưu dữ liệu (Dùng PATCH để bảo vệ dữ liệu)
+// 4. Lưu dữ liệu
 const saveEmployee = async () => {
   const method = isEdit.value ? 'PATCH' : 'POST'
   const url = isEdit.value ? `${API_URL}/${form.value.id}` : API_URL
@@ -297,7 +307,7 @@ const saveEmployee = async () => {
   }
 }
 
-// 5. Toggle trạng thái (PATCH)
+// 5. Toggle trạng thái
 const toggleStatus = async (emp) => {
   const newStatus = !emp.active
   try {
@@ -402,7 +412,10 @@ const filteredEmployees = computed(() => {
   color: #999;
 }
 
-/* Avatar tròn tinh tế */
+.general {
+  padding-left: 20px; /* Lùi lề trái */
+}
+/* Avatar */
 .emp-avatar-v2 {
   width: 38px;
   height: 38px;
@@ -411,9 +424,9 @@ const filteredEmployees = computed(() => {
   border: 1px solid #eee;
 }
 
-/* Badge chức vụ nhã nhặn */
+/* */
 .role-badge {
-  font-size: 11px;
+  font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: #666;
