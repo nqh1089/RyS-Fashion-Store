@@ -9,54 +9,80 @@
         <img src="@/assets/Home/RyS.png" alt="RyS Fashion Store" class="main-logo" />
       </router-link>
 
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mx-auto text-uppercase fw-semibold small">
-          <li class="nav-item dropdown custom-dropdown">
-            <router-link
-              to="/shop"
-              class="nav-link px-3 dropdown-toggle"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Sản phẩm
+      <button
+        class="navbar-toggler border-0 shadow-none"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasNavbar"
+        aria-controls="offcanvasNavbar"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div
+        class="offcanvas offcanvas-end"
+        tabindex="-1"
+        id="offcanvasNavbar"
+        aria-labelledby="offcanvasNavbarLabel"
+      >
+        <div class="offcanvas-header border-bottom">
+          <h5 class="offcanvas-title fw-bold" id="offcanvasNavbarLabel">MENU</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+            aria-label="Close"
+          ></button>
+        </div>
+
+        <div class="offcanvas-body">
+          <ul class="navbar-nav mx-auto text-uppercase fw-semibold small">
+            <li class="nav-item dropdown custom-dropdown">
+              <router-link
+                to="/shop"
+                class="nav-link px-3 dropdown-toggle"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Sản phẩm
+              </router-link>
+              <ul class="dropdown-menu border-0 shadow-sm rounded-0">
+                <li><router-link class="dropdown-item py-2" to="/shop">Áo dài</router-link></li>
+                <li>
+                  <router-link
+                    class="dropdown-item py-2 d-flex justify-content-between align-items-center"
+                    to=""
+                  >
+                    Quần <i class="bi bi-chevron-right small-icon"></i>
+                  </router-link>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item"><a class="nav-link px-3" href="#">Bộ sưu tập</a></li>
+            <li class="nav-item"><a class="nav-link px-3" href="#">Xuân 2026</a></li>
+            <li class="nav-item"><a class="nav-link px-3" href="#">Tết 2026</a></li>
+            <li class="nav-item">
+              <a class="nav-link px-3 text-danger" href="#">Sale Off</a>
+            </li>
+          </ul>
+
+          <div class="d-flex align-items-center gap-3 mt-4 mt-lg-0">
+            <a href="#" class="text-dark"><i class="bi bi-search"></i></a>
+            <router-link to="/login" class="text-dark">
+              <i class="bi bi-person"></i>
             </router-link>
-            <ul class="dropdown-menu border-0 shadow-sm rounded-0">
-              <li><router-link class="dropdown-item py-2" to="/shop">Áo dài</router-link></li>
-              <li>
-                <router-link
-                  class="dropdown-item py-2 d-flex justify-content-between align-items-center"
-                  to=""
-                >
-                  Quần <i class="bi bi-chevron-right small-icon"></i
-                ></router-link>
-              </li>
-            </ul>
-          </li>
-
-          <li class="nav-item"><a class="nav-link px-3" href="#">Bộ sưu tập</a></li>
-          <li class="nav-item"><a class="nav-link px-3" href="#">Xuân 2026</a></li>
-          <li class="nav-item"><a class="nav-link px-3" href="#">Tết 2026</a></li>
-          <li class="nav-item text-danger">
-            <a class="nav-link px-3 text-danger" href="#">Sale Off</a>
-          </li>
-        </ul>
-
-        <div class="d-flex align-items-center gap-3">
-          <a href="#" class="text-dark"><i class="bi bi-search"></i></a>
-
-          <router-link to="/login" class="text-dark">
-            <i class="bi bi-person"></i>
-          </router-link>
-
-          <a href="#" class="text-dark position-relative">
-            <i class="bi bi-bag"></i>
-            <span
-              class="badge rounded-pill bg-dark position-absolute top-0 start-100 translate-middle"
-              style="font-size: 0.6rem"
-              >0</span
-            >
-          </a>
+            <a href="#" class="text-dark position-relative">
+              <i class="bi bi-bag"></i>
+              <span
+                class="badge rounded-pill bg-dark position-absolute top-0 start-100 translate-middle"
+                style="font-size: 0.6rem"
+              >
+                0
+              </span>
+            </a>
+          </div>
         </div>
       </div>
     </div>

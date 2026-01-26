@@ -237,7 +237,7 @@ const form = ref({
   startDate: '',
 })
 
-// 1. Fetch dữ liệu
+//
 const fetchEmployees = async () => {
   try {
     const res = await fetch(API_URL)
@@ -250,13 +250,13 @@ const fetchEmployees = async () => {
 
 onMounted(fetchEmployees)
 
-// 2. Logic lấy ID tiếp theo = Max ID + 1
+// Lấy ID tiếp theo = Max ID + 1
 const getNextId = () => {
   if (employees.value.length === 0) return 1
   return Math.max(...employees.value.map((e) => Number(e.id))) + 1
 }
 
-// 3. Mở Modal
+// Mở Modal Thêm
 const openModal = (emp = null) => {
   if (emp) {
     isEdit.value = true
@@ -277,7 +277,7 @@ const openModal = (emp = null) => {
   showModal.value = true
 }
 
-// 4. Lưu dữ liệu
+// Lưu dữ liệu
 const saveEmployee = async () => {
   const method = isEdit.value ? 'PATCH' : 'POST'
   const url = isEdit.value ? `${API_URL}/${form.value.id}` : API_URL
@@ -307,7 +307,7 @@ const saveEmployee = async () => {
   }
 }
 
-// 5. Toggle trạng thái
+// Toggle trạng thái
 const toggleStatus = async (emp) => {
   const newStatus = !emp.active
   try {
@@ -324,7 +324,7 @@ const toggleStatus = async (emp) => {
   }
 }
 
-// 6. Xóa mềm (PATCH)
+// Xóa
 const softDelete = async (id) => {
   if (!confirm('Ngừng hoạt động nhân viên này?')) return
   try {
