@@ -94,7 +94,12 @@
               </a>
 
               <div class="search-dropdown">
-                <input type="text" placeholder="Tìm kiếm..." v-model="searchQuery" />
+                <input
+                  type="text"
+                  placeholder="Tìm kiếm..."
+                  v-model="searchQuery"
+                  @keyup.enter="handleSearch"
+                />
                 <button @click="handleSearch">
                   <i class="bi bi-search"></i>
                 </button>
@@ -107,13 +112,13 @@
               to="/login"
               class="text-dark px-3 d-flex align-items-center text-decoration-none"
             >
-              <i class="bi bi-person-circle fs-4 me-2"></i>
+              <i class="bi bi-person-circle fs-4"></i>
             </router-link>
 
             <div class="vr-line"></div>
 
             <a href="#" class="text-dark px-3 d-flex align-items-center text-decoration-none">
-              <div class="position-relative me-2">
+              <div class="position-relative">
                 <i class="bi bi-bag-fill fs-4"></i>
                 <span class="cart-badge-inner">2</span>
               </div>
@@ -127,25 +132,27 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router' // Import useRouter để điều hướng
 
+const router = useRouter()
 const searchQuery = ref('')
 
-// Hàm xóa nội dung khi ẩn/hiện dropdown
 const clearSearch = () => {
   searchQuery.value = ''
 }
 
-// Hàm xử lý khi nhấn nút search (nếu cần)
 const handleSearch = () => {
-  if (searchQuery.value.trim()) {
-    console.log('Searching for:', searchQuery.value)
-    // Thực hiện logic tìm kiếm ở đây
+  const keyword = searchQuery.value.trim()
+  if (keyword) {
+    // Điều hướng sang trang shop kèm query search
+    router.push({ path: '/shop', query: { search: keyword } })
+    // Xóa nội dung sau khi search thành công
+    searchQuery.value = ''
   }
 }
 </script>
 
 <style scoped>
-/* Giữ nguyên toàn bộ phần CSS cũ của bạn */
 .main-logo {
   height: 50px;
   width: auto;
@@ -211,11 +218,6 @@ const handleSearch = () => {
 
 .icon-group {
   gap: 0;
-}
-
-.small-text {
-  font-size: 13px;
-  white-space: nowrap;
 }
 
 .vr-line {

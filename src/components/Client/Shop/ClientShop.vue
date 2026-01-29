@@ -5,7 +5,9 @@
         <nav aria-label="breadcrumb" class="py-3">
           <ol class="breadcrumb mb-0 bg-transparent p-0">
             <li class="breadcrumb-item">
-              <router-link to="/" class="text-decoration-none text-dark opacity-75">TRANG CHỦ</router-link>
+              <router-link to="/" class="text-decoration-none text-dark opacity-75"
+                >TRANG CHỦ</router-link
+              >
             </li>
             <li class="breadcrumb-item active text-dark fw-bold" aria-current="page">ÁO DÀI</li>
           </ol>
@@ -28,14 +30,18 @@
         <aside class="col-lg-2 d-none d-lg-block border-end pe-4">
           <h6 class="fw-bold text-uppercase small mb-3 tracking-widest">Danh mục</h6>
           <ul class="list-unstyled sidebar-menu small">
-            <li class="mb-2 fw-bold active"><a href="#" class="text-decoration-none text-danger">Áo dài</a></li>
+            <li class="mb-2 fw-bold active">
+              <a href="#" class="text-decoration-none text-danger">Áo dài</a>
+            </li>
             <li class="mb-2"><a href="#" class="text-decoration-none text-dark">Đầm</a></li>
           </ul>
         </aside>
 
         <main class="col-lg-10 ps-lg-4">
           <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2">
-            <h5 class="text-uppercase fw-bold fw-light m-0">Áo dài</h5>
+            <h5 class="text-uppercase fw-bold fw-light m-0">
+              {{ route.query.search ? `Kết quả cho: ${route.query.search}` : 'Áo dài' }}
+            </h5>
             <div class="d-flex gap-4 small text-muted text-uppercase">
               <span class="cursor-pointer">Kích cỡ <i class="bi bi-chevron-down"></i></span>
               <span class="cursor-pointer">Màu sắc <i class="bi bi-chevron-down"></i></span>
@@ -43,8 +49,8 @@
             </div>
           </div>
 
-          <div class="product-grid-custom">
-            <div v-for="product in products" :key="product.id" class="product-item-fixed">
+          <div class="product-grid-custom" v-if="filteredProducts.length > 0">
+            <div v-for="product in filteredProducts" :key="product.id" class="product-item-fixed">
               <div class="product-card border-0">
                 <div class="product-img-container shadow-sm">
                   <router-link :to="`/product/${product.id}`">
@@ -63,22 +69,27 @@
             </div>
           </div>
 
-          <div class="pagination-wrapper w-100 d-flex justify-content-center mt-5">
+          <div v-else class="text-center py-5">
+            <i class="bi bi-search fs-1 text-muted mb-3"></i>
+            <p class="text-muted">
+              Không tìm thấy sản phẩm nào phù hợp với từ khóa "{{ route.query.search }}"
+            </p>
+            <button class="btn btn-dark btn-sm mt-2" @click="resetSearch">
+              Xem tất cả sản phẩm
+            </button>
+          </div>
+
+          <div
+            class="pagination-wrapper w-100 d-flex justify-content-center mt-5"
+            v-if="filteredProducts.length > 0"
+          >
             <nav aria-label="Page navigation example">
               <ul class="pagination pagination-custom border-0">
-                <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>
+                <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
                 <li class="page-item active"><a class="page-link" href="#">1</a></li>
                 <li class="page-item"><a class="page-link" href="#">2</a></li>
                 <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                  </a>
-                </li>
+                <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
               </ul>
             </nav>
           </div>
@@ -89,31 +100,55 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import axios from 'axios';
+import { ref, onMounted, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router' // Import thêm useRouter để reset
+import axios from 'axios'
 
-// Khởi tạo mảng sản phẩm rỗng
-const products = ref([]);
+const route = useRoute()
+const router = useRouter()
+const products = ref([])
+const filteredProducts = ref([])
 
-// Hàm gọi API từ JSON Server (Port 3000)
 const fetchProducts = async () => {
   try {
-    // const response = await axios.get('http://localhost:3000/products');
-    const response = await axios.get('https://my-json-server.typicode.com/nqh1089/RyS-Fashion-Store/products');
-    products.value = response.data;
+    const response = await axios.get(
+      'https://my-json-server.typicode.com/nqh1089/RyS-Fashion-Store/products',
+    )
+    products.value = response.data
+    applyFilter()
   } catch (error) {
-    console.error("Lỗi khi tải dữ liệu từ server:", error);
+    console.error('Lỗi khi tải dữ liệu:', error)
   }
-};
+}
 
-// Thực thi khi component được gắn vào giao diện
+const applyFilter = () => {
+  const keyword = route.query.search?.toString().toLowerCase() || ''
+  if (!keyword) {
+    filteredProducts.value = products.value
+  } else {
+    // Lọc theo tên sản phẩm
+    filteredProducts.value = products.value.filter((p) => p.name.toLowerCase().includes(keyword))
+  }
+}
+
+const resetSearch = () => {
+  router.push('/shop')
+}
+
+watch(
+  () => route.query.search,
+  () => {
+    applyFilter()
+  },
+)
+
 onMounted(() => {
-  fetchProducts();
-});
+  fetchProducts()
+})
 </script>
 
 <style scoped>
-/* GIỮ NGUYÊN TOÀN BỘ CSS CỦA BẠN */
+/* GIỮ NGUYÊN CSS CŨ CỦA BẠN */
 .container-fluid.px-md-5 {
   padding-left: 15% !important;
   padding-right: 15% !important;
@@ -126,18 +161,21 @@ onMounted(() => {
   letter-spacing: 0.1em;
 }
 .breadcrumb-item + .breadcrumb-item::before {
-  content: "/";
+  content: '/';
   color: #333;
 }
 .collection-banner img {
   display: block;
 }
+
 .product-grid-custom {
   display: grid;
-  grid-template-columns: repeat(3, 320px);
+  grid-template-columns: repeat(3, 319px);
   gap: 30px;
-  justify-content: start;
+  justify-content: center;
+  margin: 0 auto;
 }
+
 .product-item-fixed {
   width: 319px;
 }
@@ -148,27 +186,44 @@ onMounted(() => {
   overflow: hidden;
   background-color: #f7f7f7;
 }
-.img-main, .img-hover {
+.img-main,
+.img-hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: opacity 0.5s ease;
 }
-.img-hover { position: absolute; top: 0; left: 0; opacity: 0; z-index: 2; }
-.product-card:hover .img-hover { opacity: 1; }
+.img-hover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: 2;
+}
+.product-card:hover .img-hover {
+  opacity: 1;
+}
 .product-overlay {
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
-  display: flex; justify-content: center; align-items: center;
-  z-index: 3; transform: translateX(-101%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  transform: translateX(-101%);
   transition: transform 0.4s ease;
 }
-.product-card:hover .product-overlay { transform: translateX(0); }
+.product-card:hover .product-overlay {
+  transform: translateX(0);
+}
 
 .product-name {
   font-size: 15px;
-  letter-spacing: 1px; /* Tăng khoảng cách chữ giống Format */
+  letter-spacing: 1px;
   color: #333;
 }
 .product-price {
@@ -176,53 +231,20 @@ onMounted(() => {
   font-weight: 600;
 }
 
-/* Số trang (Pagination) */
-/* Tùy chỉnh thanh phân trang căn giữa */
-.pagination-wrapper {
-  /* Đảm bảo khoảng cách với lưới sản phẩm phía trên */
-  padding-top: 20px;
-}
-
-.pagination-custom {
-  gap: 5px; /* Tạo khoảng cách nhỏ giữa các ô số */
-}
-
 .pagination-custom .page-link {
   color: #333;
   background-color: #fff;
-  border: 1px solid #e0e0e0; /* Viền xám nhạt tinh tế */
+  border: 1px solid #e0e0e0;
   padding: 8px 16px;
   font-size: 14px;
   min-width: 40px;
   text-align: center;
   transition: all 0.2s ease;
 }
-
-/* Ô đang được chọn: Nền đen, chữ trắng */
 .pagination-custom .page-item.active .page-link {
   background-color: #000 !important;
   border-color: #000 !important;
   color: #fff !important;
-  font-weight: bold;
-}
-
-.pagination-custom .page-link:hover {
-  background-color: #f5f5f5;
-  color: #000;
-  border-color: #ccc;
-}
-
-/* Xóa bỏ hiệu ứng đổ bóng xanh mặc định của Bootstrap */
-.pagination-custom .page-link:focus {
-  box-shadow: none;
-}
-
-.product-grid-custom {
-  display: grid;
-  grid-template-columns: repeat(3, 319px); /* Khớp với độ rộng card */
-  gap: 30px;
-  justify-content: center; /* Đưa cả cụm 3 cột vào giữa */
-  margin: 0 auto;
 }
 
 @media (max-width: 1200px) {
