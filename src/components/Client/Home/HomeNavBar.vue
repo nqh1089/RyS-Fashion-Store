@@ -43,12 +43,13 @@
                 class="nav-link px-3 dropdown-toggle"
                 role="button"
                 data-bs-toggle="dropdown"
-                aria-expanded="false"
               >
                 Sản phẩm
               </router-link>
               <ul class="dropdown-menu border-0 shadow-sm rounded-0">
-                <li><router-link class="dropdown-item py-2" to="/shop">Áo dài</router-link></li>
+                <li>
+                  <router-link class="dropdown-item py-2" to="/shop">Áo dài</router-link>
+                </li>
                 <li>
                   <router-link
                     class="dropdown-item py-2 d-flex justify-content-between align-items-center"
@@ -71,10 +72,10 @@
               </a>
               <ul class="dropdown-menu border-0 shadow-sm rounded-0">
                 <li>
-                  <a class="dropdown-item py-2" href="/#pink-collection">Nàng Thơ Trong Nắng</a>
+                  <a class="dropdown-item py-2" href="/#pink-collection"> Nàng Thơ Trong Nắng </a>
                 </li>
                 <li>
-                  <a class="dropdown-item py-2" href="/#red-collection">Sắc Đỏ Uy Nghi</a>
+                  <a class="dropdown-item py-2" href="/#red-collection"> Sắc Đỏ Uy Nghi </a>
                 </li>
               </ul>
             </li>
@@ -86,19 +87,36 @@
             </li>
           </ul>
 
-          <div class="d-flex align-items-center gap-3 mt-4 mt-lg-0">
-            <a href="#" class="text-dark"><i class="bi bi-search"></i></a>
-            <router-link to="/login" class="text-dark">
-              <i class="bi bi-person"></i>
+          <div class="d-flex align-items-center mt-4 mt-lg-0 icon-group">
+            <div class="nav-search px-3" @mouseenter="clearSearch" @mouseleave="clearSearch">
+              <a href="#" class="text-dark d-flex align-items-center text-decoration-none">
+                <i class="bi bi-search fs-5"></i>
+              </a>
+
+              <div class="search-dropdown">
+                <input type="text" placeholder="Tìm kiếm..." v-model="searchQuery" />
+                <button @click="handleSearch">
+                  <i class="bi bi-search"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="vr-line"></div>
+
+            <router-link
+              to="/login"
+              class="text-dark px-3 d-flex align-items-center text-decoration-none"
+            >
+              <i class="bi bi-person-circle fs-4 me-2"></i>
             </router-link>
-            <a href="#" class="text-dark position-relative">
-              <i class="bi bi-bag"></i>
-              <span
-                class="badge rounded-pill bg-dark position-absolute top-0 start-100 translate-middle"
-                style="font-size: 0.6rem"
-              >
-                0
-              </span>
+
+            <div class="vr-line"></div>
+
+            <a href="#" class="text-dark px-3 d-flex align-items-center text-decoration-none">
+              <div class="position-relative me-2">
+                <i class="bi bi-bag-fill fs-4"></i>
+                <span class="cart-badge-inner">2</span>
+              </div>
             </a>
           </div>
         </div>
@@ -107,25 +125,44 @@
   </nav>
 </template>
 
+<script setup>
+import { ref } from 'vue'
+
+const searchQuery = ref('')
+
+// Hàm xóa nội dung khi ẩn/hiện dropdown
+const clearSearch = () => {
+  searchQuery.value = ''
+}
+
+// Hàm xử lý khi nhấn nút search (nếu cần)
+const handleSearch = () => {
+  if (searchQuery.value.trim()) {
+    console.log('Searching for:', searchQuery.value)
+    // Thực hiện logic tìm kiếm ở đây
+  }
+}
+</script>
+
 <style scoped>
-/* Logo */
+/* Giữ nguyên toàn bộ phần CSS cũ của bạn */
 .main-logo {
-  height: 50px; /* Điều chỉnh độ cao phù hợp với thanh menu */
-  width: auto; /* Giữ tỉ lệ ảnh */
-  object-fit: contain; /* Đảm bảo ảnh không bị cắt */
-  display: block; /* Đặt hiển thị block để tránh khoảng trắng dưới ảnh */
-  transition: transform 0.3s ease; /* Hiệu ứng chuyển đổi mượt mà */
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.3s ease;
 }
 
 .main-logo:hover {
-  transform: scale(1.05); /* Hiệu ứng phóng nhẹ khi di chuột */
+  transform: scale(1.05);
 }
 
-/* Hiệu ứng gạch chân */
 .nav-link {
   position: relative;
   transition: color 0.3s;
 }
+
 .nav-link::after {
   content: '';
   position: absolute;
@@ -136,20 +173,20 @@
   background-color: #000;
   transition: width 0.3s;
 }
+
 .nav-link:hover::after {
   width: 70%;
 }
 
-/* Dropdown khi Hover */
 .custom-dropdown:hover .dropdown-menu {
   display: block;
-  margin-top: 0; /* Loại bỏ khoảng cách để không bị mất hover */
+  margin-top: 0;
 }
 
 .dropdown-menu {
   min-width: 200px;
   font-size: 13px;
-  animation: fadeIn 0.3s ease; /* Thêm hiệu ứng hiện ra mượt mà */
+  animation: fadeIn 0.3s ease;
 }
 
 .dropdown-item {
@@ -160,7 +197,7 @@
 .dropdown-item:hover {
   background-color: #f8f9fa;
   color: #000;
-  padding-left: 1.5rem; /* Hiệu ứng đẩy nhẹ khi hover */
+  padding-left: 1.5rem;
 }
 
 .small-icon {
@@ -168,9 +205,78 @@
   opacity: 0.5;
 }
 
-/* bỏ mũi tên mặc định của Bootstrap */
 .dropdown-toggle::after {
   display: none;
+}
+
+.icon-group {
+  gap: 0;
+}
+
+.small-text {
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.vr-line {
+  width: 1px;
+  height: 22px;
+  background-color: #ddd;
+}
+
+.cart-badge-inner {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  font-size: 10px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.nav-search {
+  position: relative;
+}
+
+.search-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(15px);
+  transition: all 0.25s ease;
+  z-index: 1050;
+}
+
+.nav-search:hover .search-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(18px);
+}
+
+.search-dropdown input {
+  border: none;
+  padding: 10px 15px;
+  outline: none;
+  width: 240px;
+  font-size: 14px;
+}
+
+.search-dropdown button {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
 @keyframes fadeIn {
@@ -184,71 +290,3 @@
   }
 }
 </style>
-
-<!-- <template>
-  <div class="py-2 bg-dark text-white text-center small tracking-widest">
-    MIỄN PHÍ VẬN CHUYỂN ĐƠN HÀNG TỪ 500K
-  </div>
-
-  <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
-    <div class="container">
-    <router-link to="/" class="navbar-brand fw-bold">DevS</router-link>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mx-auto text-uppercase fw-semibold small">
-          <li class="nav-item">
-            <router-link to="/shop" class="nav-link px-3">Sản phẩm</router-link>
-          </li>
-          <li class="nav-item"><a class="nav-link px-3" href="#">Bộ sưu tập</a></li>
-          <li class="nav-item"><a class="nav-link px-3" href="#">Áo sơ mi</a></li>
-          <li class="nav-item"><a class="nav-link px-3" href="#">Đầm thiết kế</a></li>
-          <li class="nav-item text-danger">
-            <a class="nav-link px-3 text-danger" href="#">Sale Off</a>
-          </li>
-        </ul>
-        <div class="d-flex align-items-center gap-3">
-          <a href="#" class="text-dark"><i class="bi bi-search"></i></a>
-          <a href="#" class="text-dark"><i class="bi bi-person"></i></a>
-          <a href="#" class="text-dark position-relative">
-            <i class="bi bi-bag"></i>
-            <span
-              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark"
-              style="font-size: 0.6rem"
-              >0</span
-            >
-          </a>
-        </div>
-      </div>
-    </div>
-  </nav>
-</template>
-
-<style scoped>
-/* Navbar */
-.nav-link {
-  position: relative;
-  transition: color 0.3s;
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 1px;
-  bottom: 5px;
-  left: 15%;
-  background-color: #000;
-  transition: width 0.3s;
-}
-
-.nav-link:hover::after {
-  width: 70%;
-}
-
-/* Hero Section */
-.hero-img {
-  height: 80vh;
-  object-fit: cover;
-  filter: brightness(0.9);
-}
-
-</style> -->
