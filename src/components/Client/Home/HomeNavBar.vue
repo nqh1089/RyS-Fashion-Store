@@ -37,26 +37,37 @@
 
         <div class="offcanvas-body">
           <ul class="navbar-nav mx-auto text-uppercase fw-semibold small">
-            <li class="nav-item dropdown custom-dropdown">
+            <li class="nav-item custom-dropdown">
               <router-link
+                class="nav-link dropdown-toggle"
                 to="/shop"
-                class="nav-link px-3 dropdown-toggle"
+                id="navbarDropdown"
                 role="button"
-                data-bs-toggle="dropdown"
+                aria-expanded="false"
               >
                 Sản phẩm
+                <!-- Mũi tên trỏ xuống -->
+                <i class="bi bi-chevron-down small-icon ms-1"></i>
               </router-link>
-              <ul class="dropdown-menu border-0 shadow-sm rounded-0">
+
+              <ul
+                class="dropdown-menu border-0 shadow-sm rounded-0"
+                aria-labelledby="navbarDropdown"
+              >
                 <li>
-                  <router-link class="dropdown-item py-2" to="/shop">Áo dài</router-link>
+                  <router-link class="dropdown-item py-2" to="/shop" @click="closeDropdown"
+                    >Áo dài</router-link
+                  >
                 </li>
                 <li>
-                  <router-link
-                    class="dropdown-item py-2 d-flex justify-content-between align-items-center"
-                    to=""
+                  <router-link class="dropdown-item py-2" to="/shop" @click="closeDropdown"
+                    >Váy công sở</router-link
                   >
-                    Quần <i class="bi bi-chevron-right small-icon"></i>
-                  </router-link>
+                </li>
+                <li>
+                  <router-link class="dropdown-item py-2" to="/shop" @click="closeDropdown"
+                    >Sản phẩm mới</router-link
+                  >
                 </li>
               </ul>
             </li>
@@ -69,6 +80,8 @@
                 data-bs-toggle="dropdown"
               >
                 Bộ sưu tập
+                <!-- Mũi tên trỏ xuống -->
+                <i class="bi bi-chevron-down small-icon ms-1"></i>
               </a>
               <ul class="dropdown-menu border-0 shadow-sm rounded-0">
                 <li>
