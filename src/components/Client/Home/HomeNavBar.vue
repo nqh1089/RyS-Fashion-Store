@@ -60,7 +60,25 @@
               </ul>
             </li>
 
-            <li class="nav-item"><a class="nav-link px-3" href="#">Bộ sưu tập</a></li>
+            <li class="nav-item dropdown custom-dropdown">
+              <a
+                class="nav-link px-3 dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+              >
+                Bộ sưu tập
+              </a>
+              <ul class="dropdown-menu border-0 shadow-sm rounded-0">
+                <li>
+                  <a class="dropdown-item py-2" href="/#pink-collection">Nàng Thơ Trong Nắng</a>
+                </li>
+                <li>
+                  <a class="dropdown-item py-2" href="/#red-collection">Sắc Đỏ Uy Nghi</a>
+                </li>
+              </ul>
+            </li>
+
             <li class="nav-item"><a class="nav-link px-3" href="#">Xuân 2026</a></li>
             <li class="nav-item"><a class="nav-link px-3" href="#">Tết 2026</a></li>
             <li class="nav-item">
@@ -232,4 +250,5 @@
   object-fit: cover;
   filter: brightness(0.9);
 }
+
 </style> -->

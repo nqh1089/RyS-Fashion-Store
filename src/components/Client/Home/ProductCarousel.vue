@@ -1,5 +1,5 @@
 <template>
-  <section class="product-carousel-section my-5">
+  <section class="product-carousel-section my-5" id="pink-collection">
     <div class="container position-relative mb-5">
       <div class="text-center mb-5">
         <h2 class="fw-light tracking-widest text-uppercase" style="font-size: 2rem">
@@ -32,7 +32,7 @@
     </div>
 
     <!-- Tone Đỏ -->
-    <div class="container position-relative">
+    <div class="container position-relative" id="red-collection">
       <div class="text-center mb-5">
         <h2 class="fw-light tracking-widest text-uppercase" style="font-size: 2rem">
           Sắc Đỏ Uy Nghi
@@ -314,5 +314,10 @@ onMounted(async () => {
 .slick-list {
   margin: 0 1.9px; /* Giữ khoảng cách đều giữa các slide (Dùng để chỉnh lại lề nếu có thừa mép ảnh) */
   overflow: hidden;
+}
+
+html {
+  scroll-behavior: smooth; /* Cuộn xuống từ từ */
+  scroll-padding-top: 100px; /* Khi cuộn đến một thẻ đc gắn, dừng lại cách đỉnh màn hình 100px */
 }
 </style>
