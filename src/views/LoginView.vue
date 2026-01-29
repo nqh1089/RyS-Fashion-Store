@@ -59,9 +59,10 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, onMounted } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
+const route = useRoute()
 const router = useRouter()
 const isRegister = ref(false)
 
@@ -97,6 +98,13 @@ const HandleRegister = () => {
   alert('Đăng ký thành công! Hãy đăng nhập.')
   isRegister.value = false
 }
+
+onMounted(() => {
+  // Nếu url có ?mode=register thì tự bật form đăng ký
+  if (route.query.mode === 'register') {
+    isRegister.value = true
+  }
+})
 </script>
 
 <style scoped>

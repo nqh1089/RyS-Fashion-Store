@@ -108,12 +108,27 @@
 
             <div class="vr-line"></div>
 
-            <router-link
-              to="/login"
-              class="text-dark px-3 d-flex align-items-center text-decoration-none"
-            >
-              <i class="bi bi-person-circle fs-4"></i>
-            </router-link>
+            <div class="nav-account px-3 custom-dropdown">
+              <router-link
+                to="/login"
+                class="text-dark d-flex align-items-center text-decoration-none nav-link"
+              >
+                <i class="bi bi-person-circle fs-4"></i>
+              </router-link>
+
+              <ul class="dropdown-menu border-0 shadow-sm rounded-0">
+                <li>
+                  <router-link to="/login" class="dropdown-item py-2">Đăng nhập</router-link>
+                </li>
+                <li>
+                  <router-link
+                    :to="{ path: '/login', query: { mode: 'register' } }"
+                    class="dropdown-item py-2"
+                    >Đăng ký</router-link
+                  >
+                </li>
+              </ul>
+            </div>
 
             <div class="vr-line"></div>
 
@@ -279,6 +294,11 @@ const handleSearch = () => {
   cursor: pointer;
   display: flex;
   align-items: center;
+}
+
+/* Thêm vào phần style nếu bạn không muốn icon account có đường gạch chân */
+.nav-account .nav-link::after {
+  display: none;
 }
 
 @keyframes fadeIn {
