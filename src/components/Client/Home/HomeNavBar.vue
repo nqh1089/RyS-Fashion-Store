@@ -145,12 +145,15 @@
 
             <div class="vr-line"></div>
 
-            <a href="#" class="text-dark px-3 d-flex align-items-center text-decoration-none">
+            <router-link
+              to="/cart"
+              class="text-dark px-3 d-flex align-items-center text-decoration-none hover-cart"
+            >
               <div class="position-relative">
                 <i class="bi bi-bag-fill fs-4"></i>
-                <span class="cart-badge-inner">2</span>
+                <span class="cart-badge-inner">1</span>
               </div>
-            </a>
+            </router-link>
           </div>
         </div>
       </div>
