@@ -32,7 +32,7 @@
               <th class="py-3 text-center">Màu sắc</th>
               <th class="py-3 text-center">Giá tiền</th>
               <th class="py-3 text-center">Trạng thái</th>
-              <th class="ps-4 py-3 text-end pe-4">Thao tác</th>
+              <th class="ps-1 py-3 text-end pe-4">Thao tác</th>
             </tr>
           </thead>
           <tbody>
