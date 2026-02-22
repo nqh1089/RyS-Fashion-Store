@@ -28,11 +28,11 @@
           <thead>
             <tr class="text-uppercase tracking-widest small text-secondary bg-light">
               <th class="text-center ps-4 py-3">Nhân viên</th>
-              <th class="text-center">Chức vụ</th>
-              <th class="text-center">Liên hệ</th>
-              <th class="text-center">Ngày vào làm</th>
-              <th class="text-center">Trạng thái</th>
-              <th class="text-center">Thao tác</th>
+              <th class="text-center py-3">Chức vụ</th>
+              <th class="text-center py-3">Liên hệ</th>
+              <th class="text-center py-3">Ngày vào làm</th>
+              <th class="text-center py-3">Trạng thái</th>
+              <th class="text-center py-3">Thao tác</th>
             </tr>
           </thead>
           <tbody>
@@ -46,6 +46,7 @@
                     <p class="mb-0 text-dark-emphasis name-text">{{ emp.name }}</p>
                     <small class="text-muted-custom">
                       NV{{ emp.id }} &nbsp; | &nbsp; Account: <span>{{ emp.account }}</span>
+                      <!-- "&emsp;": là khoảng trắng đơn | "&ensp;": Khoảng trắng bằng 2 dấu cách | "&emsp;": Khoảng trắng bằng 4 dấu cách-->
                     </small>
                   </div>
                 </div>
@@ -234,7 +235,6 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-// IMPORT DỮ LIỆU TỪ data.js
 import { mockEmployees } from '../../data.js'
 
 const searchQuery = ref('')
@@ -256,11 +256,13 @@ const form = ref({
   password: '',
 })
 
+// lấy ID tiếp theo
 const getNextId = () => {
   if (employees.value.length === 0) return 1
   return Math.max(...employees.value.map((e) => Number(e.id))) + 1
 }
 
+// Mở modal, nếu có đối tượng nhân viên thì là chỉnh sửa, không thì là thêm mới
 const openModal = (emp = null) => {
   if (emp) {
     isEdit.value = true
@@ -297,6 +299,7 @@ const saveEmployee = () => {
   alert('Thao tác thành công! Mật khẩu mặc định là 123')
 }
 
+//
 const softDelete = (emp) => {
   if (emp.role === 'Manager' || emp.role === 'Quản lý') {
     alert('Không thể ngừng hoạt động tài khoản này')
