@@ -151,7 +151,7 @@
             >
               <div class="position-relative">
                 <i class="bi bi-bag-fill fs-4"></i>
-                <span class="cart-badge-inner">1</span>
+                <span class="cart-badge-inner">{{ cartCount }}</span>
               </div>
             </router-link>
           </div>
@@ -162,25 +162,48 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router' // Import useRouter để điều hướng
+import { ref, onMounted, onUnmounted } from 'vue' // Thêm onUnmounted để dọn dẹp event
+import axios from 'axios'
+import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const searchQuery = ref('')
+const cartCount = ref(0)
 
-const clearSearch = () => {
-  searchQuery.value = ''
+// Hàm lấy tổng số lượng sản phẩm từ db.json
+const fetchCount = async () => {
+  try {
+    const { data } = await axios.get('http://localhost:3000/cart')
+    // Tính tổng tất cả quantity của các item có trong giỏ
+    cartCount.value = data.reduce((total, item) => total + item.quantity, 0)
+  } catch (e) {
+    console.error('Không thể tải số lượng giỏ hàng:', e)
+    cartCount.value = 0
+  }
 }
 
 const handleSearch = () => {
   const keyword = searchQuery.value.trim()
   if (keyword) {
-    // Điều hướng sang trang shop kèm query search
     router.push({ path: '/shop', query: { search: keyword } })
-    // Xóa nội dung sau khi search thành công
     searchQuery.value = ''
   }
 }
+
+const clearSearch = () => {
+  searchQuery.value = ''
+}
+
+onMounted(() => {
+  fetchCount()
+  // Lắng nghe sự kiện 'cart-updated' phát ra từ ViewProduct.vue hoặc CartView.vue
+  window.addEventListener('cart-updated', fetchCount)
+})
+
+// Dọn dẹp event khi component bị hủy để tránh rò rỉ bộ nhớ
+onUnmounted(() => {
+  window.removeEventListener('cart-updated', fetchCount)
+})
 </script>
 
 <style scoped>

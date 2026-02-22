@@ -62,7 +62,11 @@
                 <button
                   v-for="size in ['Size 4', 'Size 6', 'Size 8', 'Size 10']"
                   :key="size"
-                  class="btn btn-outline-dark btn-sm rounded-0 px-3 py-2"
+                  @click="selectedSize = size"
+                  :class="[
+                    'btn btn-outline-dark btn-sm rounded-0 px-3 py-2',
+                    { 'bg-dark text-white': selectedSize === size },
+                  ]"
                 >
                   {{ size }}
                 </button>
@@ -95,7 +99,10 @@
                 <span class="cursor-pointer" @click="quantity++">+</span>
               </div>
 
-              <button class="btn btn-outline-dark rounded-0 py-3 fw-bold text-uppercase">
+              <button
+                @click="addToCart"
+                class="btn btn-outline-dark rounded-0 py-3 fw-bold text-uppercase"
+              >
                 Thêm vào giỏ
               </button>
               <button class="btn btn-dark rounded-0 py-3 fw-bold text-uppercase">Mua ngay</button>
@@ -121,7 +128,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from 'vue' // Thêm watch ở đây
+import { ref, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import axios from 'axios'
 import RelatedProducts from './RelatedProducts.vue'
@@ -130,30 +137,60 @@ const route = useRoute()
 const product = ref(null)
 const activeImage = ref('')
 const quantity = ref(1)
+const selectedSize = ref('Size 6')
 
 const fetchProductDetail = async () => {
   try {
     const id = route.params.id
-    const response = await axios.get(
-      `https://my-json-server.typicode.com/nqh1089/RyS-Fashion-Store/products/${id}`,
-    )
+    const response = await axios.get(`http://localhost:3000/products/${id}`)
     product.value = response.data
     activeImage.value = response.data.imgMain
-
-    // Cuộn lên đầu trang khi tải xong sản phẩm mới
     window.scrollTo({ top: 0, behavior: 'smooth' })
   } catch (error) {
-    console.error('Lỗi khi tải chi tiết sản phẩm:', error)
+    console.error('Lỗi khi tải dữ liệu:', error)
   }
 }
 
-// Lắng nghe sự thay đổi của ID trên URL
+const addToCart = async () => {
+  try {
+    // 1. Kiểm tra giỏ hàng hiện tại từ localhost:3000
+    const { data: currentCart } = await axios.get('http://localhost:3000/cart')
+    const existingItem = currentCart.find(
+      (item) => item.productId === product.value.id && item.size === selectedSize.value,
+    )
+
+    if (existingItem) {
+      // 2. Cập nhật số lượng nếu đã có
+      await axios.put(`http://localhost:3000/cart/${existingItem.id}`, {
+        ...existingItem,
+        quantity: existingItem.quantity + quantity.value,
+      })
+    } else {
+      // 3. Thêm mới nếu chưa có
+      const newItem = {
+        productId: product.value.id,
+        name: product.value.name,
+        price: product.value.price,
+        imgMain: product.value.imgMain,
+        color: product.value.color,
+        size: selectedSize.value,
+        quantity: quantity.value,
+      }
+      await axios.post('http://localhost:3000/cart', newItem)
+    }
+
+    // Phát sự kiện cập nhật Header
+    window.dispatchEvent(new CustomEvent('cart-updated'))
+    alert('Đã thêm sản phẩm vào giỏ hàng thành công!')
+  } catch (error) {
+    console.error('Lỗi khi thêm vào giỏ:', error)
+  }
+}
+
 watch(
   () => route.params.id,
   (newId) => {
-    if (newId) {
-      fetchProductDetail()
-    }
+    if (newId) fetchProductDetail()
   },
 )
 
@@ -163,11 +200,11 @@ onMounted(() => {
 </script>
 
 <style scoped>
+/* CSS giữ nguyên như code bạn đã cung cấp */
 .breadcrumb {
   font-size: 11px;
   letter-spacing: 2px;
 }
-
 .img-thumbnail {
   cursor: pointer;
   transition: all 0.3s ease;
@@ -175,39 +212,21 @@ onMounted(() => {
   aspect-ratio: 2/3;
   object-fit: cover;
   border-radius: 8px !important;
-  opacity: 0.7; /* Mặc định hơi mờ nhẹ */
+  opacity: 0.7;
 }
-
-/* Khi di chuột vào: Hiện rõ và ZOOM nhẹ */
 .img-thumbnail:hover {
   opacity: 1 !important;
-  transform: scale(1.05); /* Chỉ zoom khi hover */
+  transform: scale(1.05);
   z-index: 1;
 }
-
-/* Khi đã được chọn (Active): Hiện rõ nhưng KÍCH THƯỚC BÌNH THƯỜNG */
 .active-thumb {
   opacity: 1 !important;
   border: 1px solid #000 !important;
-  transform: scale(1); /* Trở về kích thước 1:1 bình thường */
+  transform: scale(1);
 }
-
-/* Ảnh chính giữ nguyên */
 .main-view-img {
   transition: opacity 0.3s ease-in-out;
   border-radius: 4px;
-}
-
-.product-info-sticky {
-  position: relative;
-
-  /* Di chuyển theo màn hình
-  position: sticky;
-  top: 100px; Khoảng cách từ đỉnh trình duyệt khi cuộn xuống */
-  /* Đảm bảo nội dung không vượt quá chiều cao màn hình nếu quá dài */
-  /* max-height: calc(100vh - 120px);
-  overflow-y: auto;
-  padding-right: 15px; */
 }
 .quantity-input span {
   user-select: none;

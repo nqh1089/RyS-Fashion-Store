@@ -94,5 +94,27 @@
       "active": true,
       "startDate": "2026-02-02"
     }
+  ],
+  "cart": [
+    {
+      "id": "396c",
+      "productId": "1",
+      "name": "ÁO DÀI 4 TÀ PHỐI HOẠ TIẾT",
+      "price": "1,899,000đ",
+      "imgMain": "/src/assets/Shop/1.1_ao_dai_4_ta_phoi_hoa_tiet.jpg",
+      "color": "Hồng",
+      "size": "Size 10",
+      "quantity": 1
+    },
+    {
+      "id": "8412",
+      "productId": "6",
+      "name": "ÁO DÀI ĐÍNH CƯỜM",
+      "price": "899,500đ",
+      "imgMain": "/src/assets/Shop/6.1_ao_dai_dinh_cuom.jpg",
+      "color": "Đỏ",
+      "size": "Size 6",
+      "quantity": 1
+    }
   ]
 }
