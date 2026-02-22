@@ -1,7 +1,9 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
+import { useRouter } from 'vue-router' // Thêm router để điều hướng
 
+const router = useRouter()
 const cartItems = ref([])
 const totalPrice = ref(0)
 
@@ -35,6 +37,27 @@ const removeItem = async (id) => {
   await axios.delete(`http://localhost:3000/cart/${id}`)
   fetchCart()
   window.dispatchEvent(new CustomEvent('cart-updated'))
+}
+
+// Logic xử lý Thanh toán
+const handleCheckout = async () => {
+  try {
+    // 1. Xóa sạch từng mục trong giỏ hàng trên server localhost:3000
+    const deleteRequests = cartItems.value.map((item) =>
+      axios.delete(`http://localhost:3000/cart/${item.id}`),
+    )
+    await Promise.all(deleteRequests)
+
+    // 2. Thông báo cho Header cập nhật Badge về số 0
+    window.dispatchEvent(new CustomEvent('cart-updated'))
+
+    // 3. Hiển thị thông báo và chuyển hướng sang trang thành công
+    alert('Thanh toán thành công!')
+    router.push('/success')
+  } catch (error) {
+    console.error('Lỗi khi xử lý thanh toán:', error)
+    alert('Có lỗi xảy ra trong quá trình thanh toán.')
+  }
 }
 
 const formatPrice = (num) => num.toLocaleString('vi-VN') + 'đ'
@@ -115,12 +138,8 @@ onMounted(() => fetchCart())
             <span class="fs-3 fw-bold">{{ formatPrice(totalPrice) }}</span>
           </div>
           <div class="d-flex justify-content-end gap-2 action-btns">
-            <!-- <button
-              class="btn btn-outline-dark rounded-0 px-4 py-3 text-uppercase fw-bold small transition-all"
-            >
-              Cập nhật
-            </button> -->
             <button
+              @click="handleCheckout"
               class="btn btn-dark rounded-0 px-5 py-3 text-uppercase fw-bold small shadow-sm transition-all"
             >
               Thanh toán
@@ -171,7 +190,6 @@ onMounted(() => fetchCart())
   transform: translateY(-1px);
 }
 
-/* Đưa màu badge về đen đúng chất NEM */
 .bg-black {
   background-color: #000 !important;
 }

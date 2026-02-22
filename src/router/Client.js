@@ -13,6 +13,11 @@ const clientRoutes = [
       { path: 'shop', name: 'Shop', component: Shop },
       { path: 'product/:id', name: 'ViewProduct', component: ViewProduct },
       { path: 'cart', name: 'client.cart', component: CartView },
+      {
+        path: '/success',
+        name: 'success',
+        component: () => import('../components/Client/Shop/SuccessView.vue'), // Đường dẫn tới file bạn vừa tạo
+      },
     ],
   },
 ]

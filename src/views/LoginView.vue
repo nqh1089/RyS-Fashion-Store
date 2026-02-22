@@ -77,7 +77,7 @@ const HandleLogin = () => {
   const { username, password } = loginData.value
 
   // Tài khoản ADMIN
-  if (username === 'ad' && password === '123') {
+  if (username === 'ad' && password === '1') {
     alert('Đăng nhập ADMIN thành công!')
     router.push('/admin/dashboard')
   }
