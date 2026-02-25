@@ -12,7 +12,7 @@
         <i class="bi bi-box-seam"></i> <span>SẢN PHẨM</span>
       </router-link>
       <router-link to="/admin/orders" class="nav-item" title="Hóa đơn">
-        <i class="bi bi-receipt"></i> <span>HÓA ĐƠN</span>
+        <i class="bi bi-receipt"></i> <span>ĐƠN HÀNG</span>
       </router-link>
       <router-link to="/admin/employees" class="nav-item" title="Nhân viên">
         <i class="bi bi-person-badge"></i> <span>NHÂN VIÊN</span>
