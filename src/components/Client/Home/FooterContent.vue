@@ -3,11 +3,7 @@
     <div class="container text-center">
       <div class="row g-4">
         <div class="col-md-12">
-        <img
-          src="@/assets/Home/RyS2.png"
-          alt="RyS Fashion Store"
-          class="main-logo"
-        />
+          <img src="@/assets/Home/RyS2.png" alt="RyS Fashion Store" class="main-logo" />
           <p class="text-secondary text-center lh-base">
             Trang web nhằm mục đích phục vụ học tập. <br />
             Huynq_TH05211_ASM_SOF3081

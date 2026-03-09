@@ -60,7 +60,6 @@
 </template>
 
 <style>
-/* --- 8. SERVICE COMMITMENTS STYLE --- */
 .service-commitments {
   border-bottom: 1px solid #eee;
 }
@@ -98,7 +97,6 @@
   color: #6c757d;
 }
 
-/* Responsive cho thiết bị nhỏ */
 @media (max-width: 576px) {
   .service-icon img {
     width: 45px;

@@ -162,7 +162,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue' // Thêm onUnmounted để dọn dẹp event
+import { ref, onMounted, onUnmounted } from 'vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
 
@@ -170,11 +170,10 @@ const router = useRouter()
 const searchQuery = ref('')
 const cartCount = ref(0)
 
-// Hàm lấy tổng số lượng sản phẩm từ db.json
+// Lấy tổng số lượng sản phẩm từ db.json
 const fetchCount = async () => {
   try {
     const { data } = await axios.get('http://localhost:3000/cart')
-    // Tính tổng tất cả quantity của các item có trong giỏ
     cartCount.value = data.reduce((total, item) => total + item.quantity, 0)
   } catch (e) {
     console.error('Không thể tải số lượng giỏ hàng:', e)
@@ -196,11 +195,9 @@ const clearSearch = () => {
 
 onMounted(() => {
   fetchCount()
-  // Lắng nghe sự kiện 'cart-updated' phát ra từ ViewProduct.vue hoặc CartView.vue
   window.addEventListener('cart-updated', fetchCount)
 })
 
-// Dọn dẹp event khi component bị hủy để tránh rò rỉ bộ nhớ
 onUnmounted(() => {
   window.removeEventListener('cart-updated', fetchCount)
 })

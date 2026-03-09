@@ -105,7 +105,7 @@
               >
                 Thêm vào giỏ
               </button>
-              <button class="btn btn-dark rounded-0 py-3 fw-bold text-uppercase">Mua ngay</button>
+              <!-- <button class="btn btn-dark rounded-0 py-3 fw-bold text-uppercase">Mua ngay</button> -->
             </div>
 
             <div class="product-description small text-muted">
@@ -153,20 +153,20 @@ const fetchProductDetail = async () => {
 
 const addToCart = async () => {
   try {
-    // 1. Kiểm tra giỏ hàng hiện tại từ localhost:3000
+    // Kiểm tra giỏ hàng từ localhost:3000
     const { data: currentCart } = await axios.get('http://localhost:3000/cart')
     const existingItem = currentCart.find(
       (item) => item.productId === product.value.id && item.size === selectedSize.value,
     )
 
     if (existingItem) {
-      // 2. Cập nhật số lượng nếu đã có
+      // Cập nhật số lượng nếu đã có
       await axios.put(`http://localhost:3000/cart/${existingItem.id}`, {
         ...existingItem,
         quantity: existingItem.quantity + quantity.value,
       })
     } else {
-      // 3. Thêm mới nếu chưa có
+      // Thêm mới nếu chưa có
       const newItem = {
         productId: product.value.id,
         name: product.value.name,
@@ -179,7 +179,6 @@ const addToCart = async () => {
       await axios.post('http://localhost:3000/cart', newItem)
     }
 
-    // Phát sự kiện cập nhật Header
     window.dispatchEvent(new CustomEvent('cart-updated'))
     alert('Đã thêm sản phẩm vào giỏ hàng thành công!')
   } catch (error) {
@@ -200,7 +199,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* CSS giữ nguyên như code bạn đã cung cấp */
 .breadcrumb {
   font-size: 11px;
   letter-spacing: 2px;

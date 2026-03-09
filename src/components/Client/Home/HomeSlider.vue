@@ -62,7 +62,6 @@
 </template>
 
 <style scoped>
-/* Tùy chỉnh chung cho nút điều hướng */
 .nem-nav-btn {
   width: 5%;
   opacity: 0; /* Mặc định ẩn mũi tên */
@@ -106,10 +105,9 @@
   opacity: 1;
 }
 
-/* Responsive cho Mobile */
 @media (max-width: 768px) {
   .nem-nav-btn {
-    display: none; /* Ẩn mũi tên trên mobile để tránh vướng víu */
+    display: none; /* Ẩn mũi tên để tránh vướng víu */
   }
 }
 </style>

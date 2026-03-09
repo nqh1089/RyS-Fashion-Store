@@ -101,7 +101,7 @@
 
 <script setup>
 import { ref, onMounted, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router' // Import thêm useRouter để reset
+import { useRoute, useRouter } from 'vue-router'
 import axios from 'axios'
 
 const route = useRoute()
@@ -148,7 +148,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* GIỮ NGUYÊN CSS CŨ CỦA BẠN */
 .container-fluid.px-md-5 {
   padding-left: 15% !important;
   padding-right: 15% !important;

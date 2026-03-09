@@ -179,7 +179,6 @@ form {
   padding: 40px;
   z-index: 1;
 
-  /* Đẩy nhanh tốc độ chuyển đổi */
   transition:
     0.6s ease-in-out 1.2s,
     visibility 0s 1s;

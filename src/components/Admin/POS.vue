@@ -157,7 +157,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { Modal } from 'bootstrap'
 
-// 1. DỮ LIỆU SẢN PHẨM FIX CỨNG
+// DỮ LIỆU SẢN PHẨM FIX CỨNG
 const SanPham = ref([
   {
     id: '1',
@@ -243,7 +243,7 @@ onMounted(() => {
   successModal = new Modal(document.getElementById('paymentSuccessModal'))
 })
 
-// 2. CHỨC NĂNG TÌM KIẾM VÀ LỌC
+// TÌM KIẾM VÀ LỌC
 const filteredProducts = computed(() => {
   return SanPham.value.filter((p) => {
     const matchSearch = p.name.toLowerCase().includes(searchQuery.value.toLowerCase())
@@ -252,7 +252,7 @@ const filteredProducts = computed(() => {
   })
 })
 
-// 3. CHỨC NĂNG GIỎ HÀNG
+// GIỎ HÀNG
 const addToCart = (product) => {
   const found = cart.value.find((item) => item.id === product.id)
   if (found) {
@@ -273,7 +273,6 @@ const clearCart = () => {
   if (confirm('Xác nhận hủy đơn hàng hiện tại?')) cart.value = []
 }
 
-// 4. TIỀN TỆ
 const parsePrice = (priceStr) => parseInt(priceStr.replace(/\D/g, ''))
 const formatCurrency = (val) => val.toLocaleString('vi-VN') + 'đ'
 
@@ -282,7 +281,7 @@ const totalPrice = computed(() =>
   cart.value.reduce((total, item) => total + parsePrice(item.price) * item.quantity, 0),
 )
 
-// 5. XỬ LÝ THANH TOÁN
+// XỬ LÝ THANH TOÁN
 const handlePayment = () => {
   lastTotal.value = totalPrice.value // Lưu lại giá trị để hiện modal
   successModal.show() // Hiện modal thành công

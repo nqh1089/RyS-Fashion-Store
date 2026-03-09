@@ -331,7 +331,7 @@ const openModal = (product = null) => {
   modalInstance.show()
 }
 
-// Validate: Kiểm tra các trường bắt buộc
+// Validate: các trường bắt buộc
 const validateForm = () => {
   if (!currentProduct.value.name.trim()) return 'Vui lòng nhập tên sản phẩm.'
   if (!currentProduct.value.price.trim()) return 'Vui lòng nhập giá tiền.'

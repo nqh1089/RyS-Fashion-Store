@@ -55,7 +55,6 @@ const fetchProducts = async () => {
   }
 }
 
-// Khởi chạy khi component được gắn vào DOM
 onMounted(async () => {
   await fetchProducts()
   await nextTick()
@@ -87,12 +86,11 @@ onMounted(async () => {
 </script>
 
 <style>
-/* --- 1. THIẾT LẬP CHUNG --- */
 * {
-  box-sizing: border-box; /* Reset giúp tính toán kích thước 321px chuẩn xác */
+  box-sizing: border-box;
 }
 
-/* --- 2. CẤU TRÚC CARD SẢN PHẨM --- */
+/* --- CARD SẢN PHẨM --- */
 .product-card {
   width: 321px; /* Cố định theo kích thước ảnh chuẩn */
   margin: 0 auto 30px; /* Căn giữa card trong cột */
@@ -134,7 +132,7 @@ onMounted(async () => {
   z-index: 2;
 }
 
-/* --- 3. HIỆU ỨNG HOVER & OVERLAY --- */
+/* --- HIỆU ỨNG HOVER & OVERLAY --- */
 .product-overlay {
   position: absolute;
   top: 0;
@@ -178,7 +176,7 @@ onMounted(async () => {
   transform: translateX(0);
 }
 
-/* --- 4. TÊN & GIÁ --- */
+/* --- TÊN & GIÁ --- */
 .product-info {
   width: 100%;
   padding-top: 5px; /* Giúp chữ sát lên chân ảnh */
@@ -203,22 +201,22 @@ onMounted(async () => {
   margin: 0;
 }
 
-/* --- 5. CẤU HÌNH SLIDER (SLICK SLIDER) --- */
+/* --- SLIDER (SLICK SLIDER) --- */
 
-/* 1. Lớp bọc ngoài cùng: CẮT PHẦN THỪA TẠI ĐÂY LÀ QUAN TRỌNG NHẤT */
+/* Lớp bọc ngoài cùng: CẮT PHẦN THỪA TẠI ĐÂY LÀ QUAN TRỌNG NHẤT */
 .product-carousel-section {
   overflow: hidden; /* Cắt sạch phần ảnh thừa lòi ra ở 2 bên màn hình */
   width: 100%;
   position: relative;
 }
 
-/* 2. Container chứa: Phải để overflow visible để không bị mất nút vuông */
+/* Container chứa: Phải để overflow visible để không bị mất nút vuông */
 .product-carousel-section .container {
   position: relative;
   overflow: visible !important;
 }
 
-/* 3. Khung Slider: Đảm bảo không bị vỡ layout trước khi JS chạy */
+/* Khung Slider: Đảm bảo không bị vỡ layout trước khi JS chạy */
 .nem-slick-slider {
   display: block !important;
   width: 100%;
@@ -229,14 +227,14 @@ onMounted(async () => {
   outline: none !important;
 }
 
-/* 4. Nút bấm hình vuông chuẩn */
+/* Nút bấm hình vuông */
 .custom-nav-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   z-index: 999 !important; /* Luôn nằm trên ảnh */
 
-  /* 1. Trạng thái bình thường: Trong suốt mờ đen nhẹ */
+  /* Trạng thái bình thường: Trong suốt mờ đen nhẹ */
   background: rgba(0, 0, 0, 0.3) !important; /* Độ mờ 30% */
   color: #ffffff !important;
   border: none;
@@ -258,13 +256,13 @@ onMounted(async () => {
   opacity: 1;
 }
 
-/* 2. Trạng thái khi hover vào chính cái nút: Đen đậm */
+/* Trạng thái khi hover vào chính cái nút: Đen đậm */
 .custom-nav-btn:hover {
   background: #000000 !important;
   color: #ffffff !important;
 }
 
-/* 5. Vị trí nút*/
+/* Vị trí nút*/
 .slick-prev-btn {
   left: 27px; /* Nút trái */
 }

@@ -320,7 +320,6 @@ const filteredEmployees = computed(() => {
 </script>
 
 <style scoped>
-/* Toàn bộ Style giữ nguyên */
 .custom-table {
   table-layout: fixed;
   width: 100%;

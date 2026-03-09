@@ -340,8 +340,7 @@ const toggleLock = (customer) => {
   }
 }
 
-// Hàm lấy tên viết tắt từ họ tên đầy đủ
-// Để làm avatar chữ cái trong bảng khách hàng
+// Lấy tên viết tắt từ họ tên đầy đủ để làm avatar chữ cái
 const getInitials = (name) =>
   name
     .split(' ')
