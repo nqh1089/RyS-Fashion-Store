@@ -111,6 +111,7 @@ const filteredProducts = ref([])
 
 const fetchProducts = async () => {
   try {
+    // const response = await axios.get('http://localhost:3000/products')
     const response = await axios.get(
       'https://my-json-server.typicode.com/nqh1089/RyS-Fashion-Store/products',
     )
